@@ -32,7 +32,7 @@ public class SoobaConst {
 	 * 在庫
 	 */
 	public static final int STOCKLINE_F = 3;
-	
+
 	/**
 	 * 注目リスト
 	 */
@@ -53,7 +53,7 @@ public class SoobaConst {
 	 * スロット 6~14
 	 */
 	public static final int SLOT_e_F = 15;
-	
+
 	/**
 	 * 値段
 	 */
@@ -73,12 +73,13 @@ public class SoobaConst {
 	public static int openData = 0;
 
 	// 設定用
-	public static String FILENAME = "pso.csv";// ファイル名
-	public static int MAXROW = 99;// 最大行
-	public static int GRAPHSPAN = 0;// グラフの表示時間
+	public static String FILE_NAME = "pso.csv";// ファイル名
+
+	public static int MAX_ROW = 99;// 最大行
+	public static int GRAPH_SPAN = 0;// グラフの表示時間
 	/**
 	 * noadd:0 addnew:1
 	 */
-	public static int INPORTNEW = 0;// インポート時に新しく追加
+	public static int INPORT_NEW = 0;// インポート時に新しく追加
 
 }

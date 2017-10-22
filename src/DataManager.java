@@ -20,7 +20,7 @@ public class DataManager extends AbstractTableModel {
 
 	private static ArrayList<ItemDataMap> iDMList = new ArrayList<ItemDataMap>(SoobaConst.MAXTAB);
 	private static ArrayList<ItemData> itemDataList = new ArrayList<ItemData>();
-	static String FILENAME = new String(SoobaConst.FILENAME);
+	static String FILENAME = new String(SoobaConst.FILE_NAME);
 	static BufferedWriter bufferWriter = null;
 	static InfoManager infoman;
 
@@ -197,7 +197,7 @@ public class DataManager extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return SoobaConst.MAXROW;
+		return SoobaConst.MAX_ROW;
 	}
 
 	@Override
