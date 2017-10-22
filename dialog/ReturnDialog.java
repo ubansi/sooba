@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 
-public class returnDialog extends JDialog implements ActionListener {
+public class ReturnDialog extends JDialog implements ActionListener {
 
 	/**
 	 *
@@ -17,7 +17,7 @@ public class returnDialog extends JDialog implements ActionListener {
 	static Label lab;
 	static MyTable table;
 
-	public returnDialog(WindowSetup frame) {
+	public ReturnDialog(WindowSetup frame) {
 		super(frame);
 
 		setModal(true);

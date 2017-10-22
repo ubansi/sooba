@@ -303,8 +303,8 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		// 編集とりけし
 		if (obj == b2) {
 			System.out.println("return");
-			returnDialog.setTable(Table[pane.getSelectedIndex()]);
-			new returnDialog(this);
+			ReturnDialog.setTable(Table[pane.getSelectedIndex()]);
+			new ReturnDialog(this);
 			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),SoobaConst.VALUELINE);
 			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),SoobaConst.TIMESTANPLINE);
 		}
