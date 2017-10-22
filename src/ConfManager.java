@@ -37,7 +37,7 @@ public class ConfManager {
 			try {
 				fl.createNewFile();
 			} catch (IOException e1) {
-				status_info.set_status_label("ファイルの作成に失敗しました。");
+				StatusInfo.set_status_label("ファイルの作成に失敗しました。");
 				SoobaConst.openData = 1;
 			}
 			// System.out.println("ひらけませんですた");

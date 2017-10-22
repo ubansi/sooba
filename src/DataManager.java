@@ -687,13 +687,13 @@ public class DataManager extends AbstractTableModel {
 			System.out.println(itemDataList.size());
 
 		} catch (IOException e) {
-			status_info.set_status_label("新しいファイルを作成します。");
+			StatusInfo.set_status_label("新しいファイルを作成します。");
 			File fl = new File(FILENAME);
 			SoobaConst.openData = 1;
 			try {
 				fl.createNewFile();
 			} catch (IOException e1) {
-				status_info.set_status_label("ファイルの作成に失敗しました。");
+				StatusInfo.set_status_label("ファイルの作成に失敗しました。");
 				SoobaConst.openData = 1;
 			}
 		}

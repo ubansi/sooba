@@ -194,7 +194,7 @@ public class inportDialog extends JDialog implements ActionListener {
 				k++;				
 			}
 
-			status_info.set_status_label("インポートが完了しました");
+			StatusInfo.set_status_label("インポートが完了しました");
 			
 			dispose();
 		} else if (obj == btn_n) {

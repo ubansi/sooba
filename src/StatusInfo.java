@@ -1,15 +1,15 @@
 import java.awt.Component;
 import java.awt.Label;
 
-public class status_info {
+public class StatusInfo {
 	static Label status_label;
 
-	status_info() {
+	StatusInfo() {
 		status_label = new Label("ステータス");
 
 	}
 
-	status_info(String str) {
+	StatusInfo(String str) {
 		status_label = new Label(str);
 	}
 
