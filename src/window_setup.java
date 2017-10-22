@@ -127,7 +127,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		setMenuBar(mb);
 
 		// 終了ボタンの実装
-		addWindowListener(new exit(this));
+		addWindowListener(new Exit(this));
 
 		// setLayout(gbl);
 
