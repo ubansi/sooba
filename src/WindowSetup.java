@@ -287,7 +287,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		// インポート
 		if (obj == ed1) {
 			System.out.println("inport");
-			new inportDialog(this);
+			new InportDialog(this);
 			dm.fireTableDataChanged();
 		}
 		// エクスポート

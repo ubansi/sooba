@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class inportDialog extends JDialog implements ActionListener {
+public class InportDialog extends JDialog implements ActionListener {
 
 	/**
 	 *
@@ -20,7 +20,7 @@ public class inportDialog extends JDialog implements ActionListener {
 	Button btn_n = new Button("キャンセル");
 	JTextArea ta = new JTextArea();
 
-	public inportDialog(WindowSetup frame) {
+	public InportDialog(WindowSetup frame) {
 
 		super(frame);
 		setModal(true);
