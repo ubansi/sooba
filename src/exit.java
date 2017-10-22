@@ -17,7 +17,7 @@ public class exit implements WindowListener {
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
-		confManager.saveConf();
+		ConfManager.saveConf();
 
 		if (sooba_const.DATACHANGE != 0) {
 

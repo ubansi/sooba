@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Properties;
 
-public class confManager {
+public class ConfManager {
 
 	public static void openConf() {
 		String configFile = "Sooba.conf";

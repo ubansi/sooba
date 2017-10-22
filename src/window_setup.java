@@ -83,7 +83,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		// openingDialog od =
 		new openingDialog(this);
 		status_info sf = new status_info();
-		confManager.openConf();
+		ConfManager.openConf();
 
 		setTitle("SooBa Ver" + sooba_const.VER);
 
