@@ -180,14 +180,14 @@ public class inportDialog extends JDialog implements ActionListener {
 				if (dataLine != -1) {
 					// インポートデータを挿入
 					DataManager.setValueInport(inItemDataList.get(k).getValue(), inItemDataList.get(k).getBaseTimeStamp(),dataLine);
-					sooba_const.DATACHANGE = 1;
+					SoobaConst.DATACHANGE = 1;
 
 				}
 				// 名前が見つからなかった場合は最後尾に追加
 				else {
-					if (sooba_const.INPORTNEW == 1) {
+					if (SoobaConst.INPORTNEW == 1) {
 						DataManager.addLast(inItemDataList.get(k));
-						sooba_const.DATACHANGE = 1;
+						SoobaConst.DATACHANGE = 1;
 					}
 				}
 				

@@ -45,7 +45,7 @@ public class returnDialog extends JDialog implements ActionListener {
 		if (obj == btn_y) {
 			DataManager.removeLast(table.getSelectedRow());
 			GraphManager.setGraphParam(table.getSelectedRow());
-			sooba_const.DATACHANGE = 1;
+			SoobaConst.DATACHANGE = 1;
 			dispose();
 		} else if (obj == btn_n) {
 			dispose();

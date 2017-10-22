@@ -19,15 +19,15 @@ public class ConfManager {
 			prop.load(fi);
 
 			if (prop.getProperty("MaxRow") != null)
-				sooba_const.MAXROW = Integer.parseInt(prop
+				SoobaConst.MAXROW = Integer.parseInt(prop
 						.getProperty("MaxRow"));
-			System.out.println("MaxRow=" + sooba_const.MAXROW);
+			System.out.println("MaxRow=" + SoobaConst.MAXROW);
 			if (prop.getProperty("graphSpan") != null)
-				sooba_const.GRAPHSPAN = Integer.parseInt(prop
+				SoobaConst.GRAPHSPAN = Integer.parseInt(prop
 						.getProperty("graphSpan"));
-			System.out.println("graphSpan=" + sooba_const.GRAPHSPAN);
+			System.out.println("graphSpan=" + SoobaConst.GRAPHSPAN);
 			if (prop.getProperty("inportNew") != null)
-				sooba_const.INPORTNEW = Integer.parseInt(prop
+				SoobaConst.INPORTNEW = Integer.parseInt(prop
 						.getProperty("inportNew"));
 
 			fi.close();
@@ -38,13 +38,13 @@ public class ConfManager {
 				fl.createNewFile();
 			} catch (IOException e1) {
 				status_info.set_status_label("ファイルの作成に失敗しました。");
-				sooba_const.openData = 1;
+				SoobaConst.openData = 1;
 			}
 			// System.out.println("ひらけませんですた");
-			sooba_const.openData = 1;
+			SoobaConst.openData = 1;
 		} catch (IOException e) {
 //			e.printStackTrace();
-			sooba_const.openData =1;
+			SoobaConst.openData =1;
 
 		}
 	}
@@ -59,11 +59,11 @@ public class ConfManager {
 
 			bufferWriter.write("# SooBa config file");
 			bufferWriter.newLine();
-			bufferWriter.write("MaxRow=" + sooba_const.MAXROW);
+			bufferWriter.write("MaxRow=" + SoobaConst.MAXROW);
 			bufferWriter.newLine();
-			bufferWriter.write("graphSpan=" + sooba_const.GRAPHSPAN);
+			bufferWriter.write("graphSpan=" + SoobaConst.GRAPHSPAN);
 			bufferWriter.newLine();
-			bufferWriter.write("inportNew=" + sooba_const.INPORTNEW);
+			bufferWriter.write("inportNew=" + SoobaConst.INPORTNEW);
 			bufferWriter.newLine();
 
 		} catch (FileNotFoundException e) {

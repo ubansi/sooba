@@ -67,7 +67,7 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 	//分類
 	category = new Choice();
 	for(int i=0;i<8;i++)
-		category.add(sooba_const.Category[i]);
+		category.add(SoobaConst.Category[i]);
 
 	category.add("---");
 	category.select(DataManager.getCategory(row));
@@ -80,7 +80,7 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 	element = new Choice();
 
 	for(int i=0;i < 7;i++)
-		element.add(sooba_const.Element[i]);
+		element.add(SoobaConst.Element[i]);
 	element.add("---");
 
 	element.select(DataManager.getElement(row));

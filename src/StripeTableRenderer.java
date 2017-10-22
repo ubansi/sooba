@@ -33,7 +33,7 @@ public class StripeTableRenderer extends DefaultTableCellRenderer {
 
 		setHorizontalAlignment((value instanceof Number) ? RIGHT : LEFT);
 
-		if (column == sooba_const.TIMESTANPLINE) {
+		if (column == SoobaConst.TIMESTANPLINE) {
 			setForeground(Color.GRAY.darker());
 			setHorizontalAlignment(CENTER);
 			
@@ -44,12 +44,12 @@ public class StripeTableRenderer extends DefaultTableCellRenderer {
 			}
 			}
 		}
-		if (column == sooba_const.NAMELINE)
+		if (column == SoobaConst.NAMELINE)
 			setHorizontalAlignment(LEFT);
-		if (column == sooba_const.VALUELINE) {
+		if (column == SoobaConst.VALUELINE) {
 			setHorizontalAlignment(RIGHT);
 		}
-		if (column == sooba_const.DELTA) {
+		if (column == SoobaConst.DELTA) {
 			setHorizontalAlignment(RIGHT);
 		}
 		

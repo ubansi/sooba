@@ -37,7 +37,7 @@ public class configDialog extends JDialog implements ActionListener {
 
 		getContentPane().add(p1);
 
-		if(sooba_const.INPORTNEW == 1)
+		if(SoobaConst.INPORTNEW == 1)
 			c1.setState(rootPaneCheckingEnabled);
 		
 		btn_y.addActionListener(this);
@@ -54,9 +54,9 @@ public class configDialog extends JDialog implements ActionListener {
 		if (obj == btn_y) {
 			if (c1.getState()) {
 				// 追加する
-				sooba_const.INPORTNEW = 1;
+				SoobaConst.INPORTNEW = 1;
 			} else {
-				sooba_const.INPORTNEW = 0;
+				SoobaConst.INPORTNEW = 0;
 			}
 
 		} else if (obj == btn_n) {

@@ -17,11 +17,11 @@ public class InfoManager {
 	
 	void setInfo(ItemData id){
 		StringBuffer info = new StringBuffer("アイテム名："+id.getItemName()+"\n");
-		info.append("分類："+sooba_const.Category[id.getCategory()]+"  ");
+		info.append("分類："+SoobaConst.Category[id.getCategory()]+"  ");
 		
 		//武器の場合
 		if(id.getCategory() == 0){
-			info.append("属性："+sooba_const.Element[id.getElement()]+"  ");
+			info.append("属性："+SoobaConst.Element[id.getElement()]+"  ");
 		}
 		if(id.getCategory() < 2){
 			info.append("スロット数："+id.getSlot()+"\n");

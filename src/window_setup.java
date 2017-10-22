@@ -35,7 +35,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 	MenuItem ed1, ed2;
 	MenuItem conf1;
 	status_info ws_info;
-	static MyTable[] Table = new MyTable[sooba_const.MAXTAB];//MAXTAB=10
+	static MyTable[] Table = new MyTable[SoobaConst.MAXTAB];//MAXTAB=10
 
 	DataManager dm = new DataManager();
 	static JTabbedPane pane;
@@ -85,7 +85,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		status_info sf = new status_info();
 		ConfManager.openConf();
 
-		setTitle("SooBa Ver" + sooba_const.VER);
+		setTitle("SooBa Ver" + SoobaConst.VER);
 
 		// メニューバーの設置
 		MenuBar mb = new MenuBar();
@@ -165,19 +165,19 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		c2.add("４週間");
 
 		c2.addItemListener(this);
-		c2.select(sooba_const.GRAPHSPAN);
+		c2.select(SoobaConst.GRAPHSPAN);
 
-		if (sooba_const.GRAPHSPAN == 0)
+		if (SoobaConst.GRAPHSPAN == 0)
 			gm.setScale(3);
-		else if (sooba_const.GRAPHSPAN == 1)
+		else if (SoobaConst.GRAPHSPAN == 1)
 			gm.setScale(12);
-		else if (sooba_const.GRAPHSPAN == 2)
+		else if (SoobaConst.GRAPHSPAN == 2)
 			gm.setScale(24);
-		else if (sooba_const.GRAPHSPAN == 3)
+		else if (SoobaConst.GRAPHSPAN == 3)
 			gm.setScale(48);
-		else if (sooba_const.GRAPHSPAN == 4)
+		else if (SoobaConst.GRAPHSPAN == 4)
 			gm.setScale(24 * 7);
-		else if (sooba_const.GRAPHSPAN == 5)
+		else if (SoobaConst.GRAPHSPAN == 5)
 			gm.setScale(24 * 7 * 4);
 		else
 			gm.setScale(24);
@@ -199,7 +199,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		pane = new JTabbedPane();
 
 
-		for(int i = 0;i < sooba_const.MAXTAB;i++){
+		for(int i = 0;i < SoobaConst.MAXTAB;i++){
 			Table[i] = new MyTable(dm);
 			Table[i].addMouseListener(this);
 			scroll[i] = new JScrollPane(Table[i]);
@@ -209,8 +209,8 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		pane.addTab("全部",scroll[0]);
 		pane.addTab("注目",scroll[1]);
 
-		for(int i =0;i < sooba_const.MAXTAB -2;i++){
-			pane.addTab(sooba_const.Category[i],scroll[i+2]);
+		for(int i =0;i < SoobaConst.MAXTAB -2;i++){
+			pane.addTab(SoobaConst.Category[i],scroll[i+2]);
 		}
 
 		pane.addChangeListener(this);
@@ -305,8 +305,8 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 			System.out.println("return");
 			returnDialog.setTable(Table[pane.getSelectedIndex()]);
 			new returnDialog(this);
-			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),sooba_const.VALUELINE);
-			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),sooba_const.TIMESTANPLINE);
+			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),SoobaConst.VALUELINE);
+			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),SoobaConst.TIMESTANPLINE);
 		}
 		if (obj == back){
 			System.out.println("back");
@@ -403,7 +403,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		if (cho.getSelectedIndex() == 5)
 			gm.setScale(24*7*4);
 
-		sooba_const.GRAPHSPAN = cho.getSelectedIndex();
+		SoobaConst.GRAPHSPAN = cho.getSelectedIndex();
 		gm.setTimeOffset(0,Table[0].getSelectedRow());
 	}
 

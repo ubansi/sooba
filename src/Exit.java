@@ -19,7 +19,7 @@ public class Exit implements WindowListener {
 		// TODO 自動生成されたメソッド・スタブ
 		ConfManager.saveConf();
 
-		if (sooba_const.DATACHANGE != 0) {
+		if (SoobaConst.DATACHANGE != 0) {
 
 			// fileChangeDialog dlg =
 			new fileChangeDialog(frame);
