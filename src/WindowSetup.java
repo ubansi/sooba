@@ -81,7 +81,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 		f = this;
 		// openingDialog od =
-		new openingDialog(this);
+		new OpeningDialog(this);
 		StatusInfo sf = new StatusInfo();
 		ConfManager.openConf();
 
@@ -255,7 +255,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		dm.OpenTable(Table[0].getRowCount());
 		StatusInfo.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 
-		openingDialog.closeOpening();
+		OpeningDialog.closeOpening();
 
 
 
