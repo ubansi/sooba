@@ -20,6 +20,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
@@ -42,7 +43,6 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 	Button b1, b2;
 	Button back,forward;
 
-	clock ck = new clock();
 	Label time;
 	static Label sum_value;
 	static Clipboard clipboad;
@@ -253,7 +253,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		// setVisible(true);
 
 		dm.OpenTable(Table[0].getRowCount());
-		status_info.set_status_label("ファイルを開きました   (" + clock.getTime(1) + ")");
+		status_info.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 
 		openingDialog.closeOpening();
 
@@ -272,14 +272,13 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 
 
 		if (obj == fi1) {
-			status_info.set_status_label("ファイルを開きました   (" + clock.getTime(1)
-					+ ")");
+			status_info.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 			dm.OpenTable(Table[0].getRowCount());
 			graphManager
 					.setGraphParam(Table[0].getSelectedRow());
 		} else if (obj == fi2) {
 			dataManager.SaveTable();
-			status_info.set_status_label("データを保存しました   (" + clock.getTime(1)
+			status_info.set_status_label("データを保存しました   (" + Clock.getTime(1)
 					+ ")");
 		} else if (obj == b1) {
 			status_info.set_status_label("在庫がリセットされました");
@@ -324,9 +323,9 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 	public void run() {
 
 		int i=0;
-		
+
 		while (true == clock_switch) {
-			time.setText(clock.getTime(1));
+			time.setText(Clock.getTime(Clock.HHMMSS));
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -337,7 +336,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 				i=0;
 			}
 			i++;
-			
+
 		}
 	}
 

@@ -136,7 +136,7 @@ public class dataManager extends AbstractTableModel {
 			}
 			if (col == sooba_const.VALUELINE) {
 
-				itemDataList.get(row).setValue(newValue,clock.getTimeNumLong());
+				itemDataList.get(row).setValue(newValue,Clock.getTimeNumLong());
 				stock_sum();
 
 				fireTableCellUpdated(row, col + 1);
@@ -156,7 +156,7 @@ public class dataManager extends AbstractTableModel {
 			}
 			if (col == sooba_const.VALUELINE) {
 
-				itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).setValue(newValue,clock.getTimeNumLong());
+				itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).setValue(newValue,Clock.getTimeNumLong());
 				stock_sum();
 
 				fireTableCellUpdated(row, col + 1);
