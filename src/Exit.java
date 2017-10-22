@@ -22,7 +22,7 @@ public class Exit implements WindowListener {
 		if (SoobaConst.DATACHANGE != 0) {
 
 			// fileChangeDialog dlg =
-			new fileChangeDialog(frame);
+			new FileChangeDialog(frame);
 
 		} else {
 			// データのクリア

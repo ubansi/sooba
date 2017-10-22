@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 
-public class fileChangeDialog extends JDialog implements ActionListener {
+public class FileChangeDialog extends JDialog implements ActionListener {
 
 	/**
 	 *
@@ -15,7 +15,7 @@ public class fileChangeDialog extends JDialog implements ActionListener {
 	Button btn_y = new Button("保存する");
 	Button btn_n = new Button("保存しない");
 
-	public fileChangeDialog(WindowSetup frame) {
+	public FileChangeDialog(WindowSetup frame) {
 
 		// TODO 自動生成されたコンストラクター・スタブ
 		super(frame);
