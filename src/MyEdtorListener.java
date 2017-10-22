@@ -11,7 +11,7 @@ public class MyEdtorListener implements CellEditorListener {
 		// tableManager.SetCell(tableManager.getRow(),tableManager.getCol()+1,clock.getTimeNum());
 
 //		System.out.println("edit end" + tableManager.getRow());
-		graphManager.setGraphParam(window_setup.Table[window_setup.pane.getSelectedIndex()].getSelectedRow());
+		GraphManager.setGraphParam(window_setup.Table[window_setup.pane.getSelectedIndex()].getSelectedRow());
 		
 		// 編集後次の行のアイテム名をコピー
 		window_setup.copyClipboad(window_setup.Table[window_setup.pane.getSelectedIndex()].getSelectedRow()+1);

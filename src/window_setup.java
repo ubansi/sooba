@@ -47,7 +47,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 	static Label sum_value;
 	static Clipboard clipboad;
 	TableCellEditor tce;
-	graphManager gm;
+	GraphManager gm;
 	static Frame f;
 	/**
 	 * 0:all 1:watch 2:order
@@ -146,7 +146,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 
 //		TextArea ta1 = new TextArea("値段をいれると\n次のアイテム名を\n勝手にコピーするよ", 5, 30);
 
-		gm = new graphManager();
+		gm = new GraphManager();
 
 
 		Label span = new Label("表示時間");
@@ -260,7 +260,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 
 
 		setVisible(true);
-		graphManager.setGraphParam(0);
+		GraphManager.setGraphParam(0);
 
 		DataManager.setInfoData(0);
 
@@ -274,7 +274,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		if (obj == fi1) {
 			status_info.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 			dm.OpenTable(Table[0].getRowCount());
-			graphManager
+			GraphManager
 					.setGraphParam(Table[0].getSelectedRow());
 		} else if (obj == fi2) {
 			DataManager.SaveTable();
@@ -359,7 +359,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		}
 		else{
 			copyClipboad(Table[pane.getSelectedIndex()].getSelectedRow());
-			graphManager.setGraphParam(Table[pane.getSelectedIndex()].getSelectedRow());
+			GraphManager.setGraphParam(Table[pane.getSelectedIndex()].getSelectedRow());
 			DataManager.setInfoData(Table[pane.getSelectedIndex()].getSelectedRow());
 			DataManager.printData(Table[pane.getSelectedIndex()].getSelectedRow());
 		}

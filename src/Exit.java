@@ -26,7 +26,7 @@ public class Exit implements WindowListener {
 
 		} else {
 			// データのクリア
-			graphManager.graphDataClear();
+			GraphManager.graphDataClear();
 			DataManager.dataClear();
 			frame.dispose();
 			System.exit(0);

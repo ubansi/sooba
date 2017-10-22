@@ -6,7 +6,7 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class graphManager extends Canvas {
+public class GraphManager extends Canvas {
 
 	/**
 	 *
@@ -31,7 +31,7 @@ public class graphManager extends Canvas {
 	static Canvas c;
 	static int timeOffset = 0;
 	
-	graphManager(){
+	GraphManager(){
 		c = this;
 	}
 
