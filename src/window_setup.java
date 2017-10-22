@@ -37,7 +37,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 	status_info ws_info;
 	static MyTable[] Table = new MyTable[sooba_const.MAXTAB];//MAXTAB=10
 
-	dataManager dm = new dataManager();
+	DataManager dm = new DataManager();
 	static JTabbedPane pane;
 
 	Button b1, b2;
@@ -262,7 +262,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		setVisible(true);
 		graphManager.setGraphParam(0);
 
-		dataManager.setInfoData(0);
+		DataManager.setInfoData(0);
 
 	}
 
@@ -277,7 +277,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 			graphManager
 					.setGraphParam(Table[0].getSelectedRow());
 		} else if (obj == fi2) {
-			dataManager.SaveTable();
+			DataManager.SaveTable();
 			status_info.set_status_label("データを保存しました   (" + Clock.getTime(1)
 					+ ")");
 		} else if (obj == b1) {
@@ -360,8 +360,8 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		else{
 			copyClipboad(Table[pane.getSelectedIndex()].getSelectedRow());
 			graphManager.setGraphParam(Table[pane.getSelectedIndex()].getSelectedRow());
-			dataManager.setInfoData(Table[pane.getSelectedIndex()].getSelectedRow());
-			dataManager.printData(Table[pane.getSelectedIndex()].getSelectedRow());
+			DataManager.setInfoData(Table[pane.getSelectedIndex()].getSelectedRow());
+			DataManager.printData(Table[pane.getSelectedIndex()].getSelectedRow());
 		}
 	}
 
@@ -409,7 +409,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 
 	static public void copyClipboad(int row) {
 		String s;
-		if (null != (s = dataManager.getName(row))) {
+		if (null != (s = DataManager.getName(row))) {
 			status_info.set_status_label(s + "をクリップボードにコピーしました");
 
 			clipboad = f.getToolkit().getSystemClipboard();

@@ -37,9 +37,9 @@ public class StripeTableRenderer extends DefaultTableCellRenderer {
 			setForeground(Color.GRAY.darker());
 			setHorizontalAlignment(CENTER);
 			
-			if(dataManager.getName(row)!=null){
+			if(DataManager.getName(row)!=null){
 				c = Calendar.getInstance();
-				if(c.getTimeInMillis() - dataManager.getTimestampL(row) > 1000*60*60){
+				if(c.getTimeInMillis() - DataManager.getTimestampL(row) > 1000*60*60){
 					setForeground(D_color);
 			}
 			}

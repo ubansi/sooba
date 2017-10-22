@@ -170,23 +170,23 @@ public class inportDialog extends JDialog implements ActionListener {
 				System.out.println("serching = "+inItemDataList.get(k).getItemName());
 				if(inItemDataList.get(k).getCategory() > 1){
 
-					dataLine = dataManager.serchObj(inItemDataList.get(k).getItemName());
+					dataLine = DataManager.serchObj(inItemDataList.get(k).getItemName());
 	
 				}else{
-					dataLine = dataManager.serchObj(inItemDataList.get(k));
+					dataLine = DataManager.serchObj(inItemDataList.get(k));
 				}
 
 				
 				if (dataLine != -1) {
 					// インポートデータを挿入
-					dataManager.setValueInport(inItemDataList.get(k).getValue(), inItemDataList.get(k).getBaseTimeStamp(),dataLine);
+					DataManager.setValueInport(inItemDataList.get(k).getValue(), inItemDataList.get(k).getBaseTimeStamp(),dataLine);
 					sooba_const.DATACHANGE = 1;
 
 				}
 				// 名前が見つからなかった場合は最後尾に追加
 				else {
 					if (sooba_const.INPORTNEW == 1) {
-						dataManager.addLast(inItemDataList.get(k));
+						DataManager.addLast(inItemDataList.get(k));
 						sooba_const.DATACHANGE = 1;
 					}
 				}

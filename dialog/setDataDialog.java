@@ -28,14 +28,14 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 	Button b_yes = new Button("確定");
 	Button b_cancel = new Button("キャンセル");
 	Button b_delete = new Button("削除");
-	dataManager dm;
+	DataManager dm;
 	Checkbox watch_check;
 
 	int row=0;
 	int maxpanel = 6;
 	int maxabi = 8;
 
-	setDataDialog(window_setup frame,int row,dataManager dm){
+	setDataDialog(window_setup frame,int row,DataManager dm){
 
 	super(frame);
 	setModal(true);
@@ -61,8 +61,8 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 		ex_abi[i] = new Panel();
 
 
-	field[0] = new TextField(dataManager.getNameSD(row),15);
-	field[1] = new TextField(dataManager.getItemNameSD(row),15);
+	field[0] = new TextField(DataManager.getNameSD(row),15);
+	field[1] = new TextField(DataManager.getItemNameSD(row),15);
 
 	//分類
 	category = new Choice();
@@ -70,7 +70,7 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 		category.add(sooba_const.Category[i]);
 
 	category.add("---");
-	category.select(dataManager.getCategory(row));
+	category.select(DataManager.getCategory(row));
 	category.addItemListener(this);
 
 	field[2] = category;
@@ -83,7 +83,7 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 		element.add(sooba_const.Element[i]);
 	element.add("---");
 
-	element.select(dataManager.getElement(row));
+	element.select(DataManager.getElement(row));
 	element.addItemListener(this);
 
 	if(category.getSelectedIndex() != 0)
@@ -96,7 +96,7 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 	slot = new Choice();
 	for(int i=0;i < 9;i++)
 		slot.add(""+i);
-	slot.select(dataManager.getSlot(row));
+	slot.select(DataManager.getSlot(row));
 	slot.addItemListener(this);
 
 	if(category.getSelectedIndex() > 1)
@@ -114,7 +114,7 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 	Panel watch = new Panel();
 	watch_check = new Checkbox("注目リストに追加する");
 
-	watch_check.setState(dataManager.getWatch(row));
+	watch_check.setState(DataManager.getWatch(row));
 
 	watch_check.addItemListener(this);
 	watch.add(watch_check);
@@ -162,11 +162,11 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 	}
 
 	for(int i=0; i< maxabi;i++)
-		if(dataManager.getExabi(row) != null)
-			if(dataManager.getExabi(row)[i] != null)
-				textfield[i].setText(dataManager.getExabi(row)[i]);
+		if(DataManager.getExabi(row) != null)
+			if(DataManager.getExabi(row)[i] != null)
+				textfield[i].setText(DataManager.getExabi(row)[i]);
 
-	for(int i=dataManager.getSlot(row);i<maxabi;i++)
+	for(int i=DataManager.getSlot(row);i<maxabi;i++)
 		textfield[i].setEditable(false);
 
 

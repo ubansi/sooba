@@ -188,17 +188,17 @@ public class graphManager extends Canvas {
 		if (selectedRow == -1)
 			selectedRow = 0;
 
-		highValue = dataManager.getHighestValue(selectedRow);
-		lowValue = dataManager.getRecordLow(selectedRow);
-		nowValue = dataManager.getValue(selectedRow);
-		nowTime = dataManager.getTimestampL(selectedRow) + (long)(timeOffset*timeScale*0.8);
+		highValue = DataManager.getHighestValue(selectedRow);
+		lowValue = DataManager.getRecordLow(selectedRow);
+		nowValue = DataManager.getValue(selectedRow);
+		nowTime = DataManager.getTimestampL(selectedRow) + (long)(timeOffset*timeScale*0.8);
 
 //		valueScale = (highValue - lowValue) / 0.8;
 		valueScale = (highValue - lowValue) / 0.7;
 
 		minValueScale = lowValue - valueScale * 1.5 / 10;
 
-		int dataCount = dataManager.getSize(selectedRow);
+		int dataCount = DataManager.getSize(selectedRow);
 
 		if (dataCount != 0) {
 
@@ -207,8 +207,8 @@ public class graphManager extends Canvas {
 
 			int i = 0;
 			while (i < dataCount) {
-				data_value.add(dataManager.getValue(selectedRow, i));
-				data_time.add(dataManager.getTimestamp(selectedRow, i));
+				data_value.add(DataManager.getValue(selectedRow, i));
+				data_time.add(DataManager.getTimestamp(selectedRow, i));
 				i++;
 			}
 

@@ -40,7 +40,7 @@ public class fileChangeDialog extends JDialog implements ActionListener {
 		// TODO 自動生成されたメソッド・スタブ
 		Object obj = e.getSource();
 		if (obj == btn_y) {
-			dataManager.SaveTable();
+			DataManager.SaveTable();
 			sooba_const.DATACHANGE = 0;
 			dispose();
 			System.exit(0);

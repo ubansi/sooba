@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 import javax.swing.table.AbstractTableModel;
 
-public class dataManager extends AbstractTableModel {
+public class DataManager extends AbstractTableModel {
 
 	/**
 	 *
@@ -24,7 +24,7 @@ public class dataManager extends AbstractTableModel {
 	static BufferedWriter bufferWriter = null;
 	static infoManager infoman;
 
-	dataManager(){
+	DataManager(){
 		infoman = new infoManager();
 		itemDataList.ensureCapacity(500);
 	}
@@ -583,7 +583,7 @@ public class dataManager extends AbstractTableModel {
 		for (int j = 0; j < maxrow; j++) {
 			clearValueAt(j);
 		}
-		dataManager.dataClear();
+		DataManager.dataClear();
 
 		try {
 			FileReader filereader = new FileReader(FILENAME);
@@ -819,7 +819,7 @@ public class dataManager extends AbstractTableModel {
 
 				bufferWriter.write("SoobaDataFormat07");
 				bufferWriter.newLine();
-			while (i < dataManager.getSize()) {
+			while (i < DataManager.getSize()) {
 				bufferWriter.write(getItemDataF(i));
 				bufferWriter.newLine();
 

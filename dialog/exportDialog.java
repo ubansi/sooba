@@ -54,17 +54,17 @@ public class exportDialog extends JDialog implements ActionListener {
 		btn_n.addActionListener(this);
 
 		int i = 0;
-		while (i < dataManager.getSize()) {
-			if (dataManager.getNameEx(i) != null) {
-				System.out.println("dataTime"+dataManager.getTimestampL(i));
+		while (i < DataManager.getSize()) {
+			if (DataManager.getNameEx(i) != null) {
+				System.out.println("dataTime"+DataManager.getTimestampL(i));
 				System.out.println("nowTime"+Calendar.getInstance().getTimeInMillis());
-				System.out.println("delay"+( Calendar.getInstance().getTimeInMillis() - (long)dataManager.getTimestampEx(i)*1000));
+				System.out.println("delay"+( Calendar.getInstance().getTimeInMillis() - (long)DataManager.getTimestampEx(i)*1000));
 				System.out.println();
 				
-				if( Calendar.getInstance().getTimeInMillis() - (long)dataManager.getTimestampEx(i)*1000 < 120*60*1000){
-					exportString.append(dataManager.getItemDataEx(i));
-					exportString.append(dataManager.getValueEx(i) + ",");
-					exportString.append(dataManager.getTimestampEx(i) + ",");
+				if( Calendar.getInstance().getTimeInMillis() - (long)DataManager.getTimestampEx(i)*1000 < 120*60*1000){
+					exportString.append(DataManager.getItemDataEx(i));
+					exportString.append(DataManager.getValueEx(i) + ",");
+					exportString.append(DataManager.getTimestampEx(i) + ",");
 				}
 			}
 			i++;
