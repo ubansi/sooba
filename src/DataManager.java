@@ -11,21 +11,21 @@ import java.util.Calendar;
 
 import javax.swing.table.AbstractTableModel;
 
-public class dataManager extends AbstractTableModel {
+public class DataManager extends AbstractTableModel {
 
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static ArrayList<ItemDataMap> iDMList = new ArrayList<ItemDataMap>(sooba_const.MAXTAB);
+	private static ArrayList<ItemDataMap> iDMList = new ArrayList<ItemDataMap>(SoobaConst.MAXTAB);
 	private static ArrayList<ItemData> itemDataList = new ArrayList<ItemData>();
-	static String FILENAME = new String(sooba_const.FILENAME);
+	static String FILENAME = new String(SoobaConst.FILENAME);
 	static BufferedWriter bufferWriter = null;
-	static infoManager infoman;
+	static InfoManager infoman;
 
-	dataManager(){
-		infoman = new infoManager();
+	DataManager(){
+		infoman = new InfoManager();
 		itemDataList.ensureCapacity(500);
 	}
 
@@ -36,15 +36,15 @@ public class dataManager extends AbstractTableModel {
 	public Object getValueAt(int row, int col) {
 
 		if (row < itemDataList.size()) {
-			if(window_setup.paneIndex == -1){
-				if (col == sooba_const.NAMELINE) {
+			if(WindowSetup.paneIndex == -1){
+				if (col == SoobaConst.NAMELINE) {
 					return itemDataList.get(row).getName();
 				}
-				if (col == sooba_const.VALUELINE) {
+				if (col == SoobaConst.VALUELINE) {
 					int i = itemDataList.get(row).getValue();
 					return (i == 0) ? null : i;
 				}
-				if (col == sooba_const.TIMESTANPLINE) {
+				if (col == SoobaConst.TIMESTANPLINE) {
 					Calendar t = Calendar.getInstance();
 
 					if(itemDataList.get(row).getTimeStampL() != 0){
@@ -54,7 +54,7 @@ public class dataManager extends AbstractTableModel {
 								+ String.format("%02d", t.get(Calendar.MINUTE));
 					}
 				}
-				if (col == sooba_const.DELTA) {
+				if (col == SoobaConst.DELTA) {
 					int delta;
 					if (itemDataList.get(row).getSize() > 1) {
 						delta = itemDataList.get(row).getValue()
@@ -65,41 +65,41 @@ public class dataManager extends AbstractTableModel {
 					return null;
 				}
 
-				if (col == sooba_const.STOCKLINE) {
+				if (col == SoobaConst.STOCKLINE) {
 					return (itemDataList.get(row).getStock() == 0) ? null : itemDataList.get(row).getStock();
 				}
 			}
 			//オーダー品タブ
 			else{
-				if(row < iDMList.get(window_setup.paneIndex).getSize()){
-					if (col == sooba_const.NAMELINE) {
-							return itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getName();
+				if(row < iDMList.get(WindowSetup.paneIndex).getSize()){
+					if (col == SoobaConst.NAMELINE) {
+							return itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getName();
 					}
-					if (col == sooba_const.VALUELINE) {
-						int i = itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getValue();
+					if (col == SoobaConst.VALUELINE) {
+						int i = itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getValue();
 						return (i == 0) ? null : i;
 					}
-					if (col == sooba_const.TIMESTANPLINE) {
+					if (col == SoobaConst.TIMESTANPLINE) {
 						Calendar t = Calendar.getInstance();
-						if(itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getTimeStampL() != 0){
-								t.setTimeInMillis(itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getTimeStampL());
+						if(itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getTimeStampL() != 0){
+								t.setTimeInMillis(itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getTimeStampL());
 							return String.format("%02d", t.get(Calendar.HOUR_OF_DAY))
 									+ ":"
 									+ String.format("%02d", t.get(Calendar.MINUTE));
 						}
 					}
-					if (col == sooba_const.DELTA) {
+					if (col == SoobaConst.DELTA) {
 						int delta;
 						if (itemDataList.get(row).getSize() > 1) {
-							delta = itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getValue()
-									- itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getValue(
-											itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getSize() - 2);
+							delta = itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getValue()
+									- itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getValue(
+											itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getSize() - 2);
 							return String.format("%+d", delta);
 						}
 						return null;
 					}
 
-					if (col == sooba_const.STOCKLINE) {
+					if (col == SoobaConst.STOCKLINE) {
 						return (itemDataList.get(row).getStock() == 0) ? null : itemDataList
 								.get(row).getStock();
 					}
@@ -130,11 +130,11 @@ public class dataManager extends AbstractTableModel {
 		while (itemDataList.size() <= row) {
 			itemDataList.add(new ItemData());
 		}
-		if(window_setup.paneIndex == -1){
-			if (col == sooba_const.NAMELINE) {
+		if(WindowSetup.paneIndex == -1){
+			if (col == SoobaConst.NAMELINE) {
 				itemDataList.get(row).setName(value.toString());
 			}
-			if (col == sooba_const.VALUELINE) {
+			if (col == SoobaConst.VALUELINE) {
 
 				itemDataList.get(row).setValue(newValue,Clock.getTimeNumLong());
 				stock_sum();
@@ -142,33 +142,33 @@ public class dataManager extends AbstractTableModel {
 				fireTableCellUpdated(row, col + 1);
 				fireTableCellUpdated(row, col + 2);
 			}
-			if (col == sooba_const.STOCKLINE) {
+			if (col == SoobaConst.STOCKLINE) {
 				itemDataList.get(row).setStock(newValue);
 				stock_sum();
 			}
 
 			fireTableCellUpdated(row, col);
-			sooba_const.DATACHANGE = 1;
+			SoobaConst.DATACHANGE = 1;
 		}
 		else{
-			if (col == sooba_const.NAMELINE) {
-				itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).setName(value.toString());
+			if (col == SoobaConst.NAMELINE) {
+				itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).setName(value.toString());
 			}
-			if (col == sooba_const.VALUELINE) {
+			if (col == SoobaConst.VALUELINE) {
 
-				itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).setValue(newValue,Clock.getTimeNumLong());
+				itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).setValue(newValue,Clock.getTimeNumLong());
 				stock_sum();
 
 				fireTableCellUpdated(row, col + 1);
 				fireTableCellUpdated(row, col + 2);
 			}
-			if (col == sooba_const.STOCKLINE) {
-				itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).setStock(newValue);
+			if (col == SoobaConst.STOCKLINE) {
+				itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).setStock(newValue);
 				stock_sum();
 			}
 
 			fireTableCellUpdated(row, col);
-			sooba_const.DATACHANGE = 1;
+			SoobaConst.DATACHANGE = 1;
 		}
 
 		itemDataList.get(row).printAllData();
@@ -197,31 +197,31 @@ public class dataManager extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return sooba_const.MAXROW;
+		return SoobaConst.MAXROW;
 	}
 
 	@Override
 	public int getColumnCount() {
-		return sooba_const.MAXCOL;
+		return SoobaConst.MAXCOL;
 	}
 
 	// 編集可能かどうか
 	public boolean isCellEditable(int rowIndex, int ColumIndex) {
 		// タイムラインの列は編集不可
-		if (ColumIndex == sooba_const.TIMESTANPLINE) {
+		if (ColumIndex == SoobaConst.TIMESTANPLINE) {
 			return false;
 		}
-		if (ColumIndex == sooba_const.DELTA) {
+		if (ColumIndex == SoobaConst.DELTA) {
 			return false;
 		}
-		if(ColumIndex == sooba_const.NAMELINE)
+		if(ColumIndex == SoobaConst.NAMELINE)
 			return false;
 
 		return true;
 	}
 
 	public String getColumnName(int column) {
-		return sooba_const.columnNames[column];
+		return SoobaConst.columnNames[column];
 
 	}
 
@@ -229,7 +229,7 @@ public class dataManager extends AbstractTableModel {
 		int i = 0;
 		while (i < itemDataList.size()) {
 			itemDataList.get(i).setStock(0);
-			fireTableCellUpdated(i, sooba_const.STOCKLINE);
+			fireTableCellUpdated(i, SoobaConst.STOCKLINE);
 			i++;
 		}
 		stock_sum();
@@ -240,7 +240,7 @@ public class dataManager extends AbstractTableModel {
 		for (int i = 0; i < itemDataList.size(); i++) {
 			sum = itemDataList.get(i).getValue() * itemDataList.get(i).getStock() + sum;
 		}
-		window_setup.sum_value.setText("" + String.format("%.0f", sum / 1.05));
+		WindowSetup.sum_value.setText("" + String.format("%.0f", sum / 1.05));
 	}
 
 	public static int getSize() {
@@ -343,10 +343,10 @@ public class dataManager extends AbstractTableModel {
 	}
 
 	static int getIndex(int row){
-		if(window_setup.paneIndex == -1)
+		if(WindowSetup.paneIndex == -1)
 			return row;
 		else
-			return iDMList.get(window_setup.paneIndex).getCategoryIndex(row);
+			return iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row);
 	}
 
 	public static int getTimestampEx(int row) {
@@ -572,7 +572,7 @@ public class dataManager extends AbstractTableModel {
 		itemDataList.add(newItem);
 
 
-		sooba_const.DATACHANGE =1;
+		SoobaConst.DATACHANGE =1;
 
 		makeDataMap();
 	}
@@ -583,7 +583,7 @@ public class dataManager extends AbstractTableModel {
 		for (int j = 0; j < maxrow; j++) {
 			clearValueAt(j);
 		}
-		dataManager.dataClear();
+		DataManager.dataClear();
 
 		try {
 			FileReader filereader = new FileReader(FILENAME);
@@ -616,15 +616,15 @@ public class dataManager extends AbstractTableModel {
 					//文字の場合
 					if (streamtokenizer.ttype == StreamTokenizer.TT_WORD) {
 						System.out.println("sval"+line +":"+ streamtokenizer.sval);
-						if (col == sooba_const.NAMELINE_F) {
+						if (col == SoobaConst.NAMELINE_F) {
 							itemDataList.add(new ItemData());
 							itemDataList.get(row).setName(streamtokenizer.sval);
 						}
-						if(col == sooba_const.CopyNAMELINE){
+						if(col == SoobaConst.CopyNAMELINE){
 							itemDataList.get(row).setItemName(streamtokenizer.sval);
 						}
-						if(col >= sooba_const.SLOT_s_F &&col < (sooba_const.SLOT_s_F + itemDataList.get(row).getSlot())){
-							itemDataList.get(row).setEx_abi((col-sooba_const.SLOT_s_F),streamtokenizer.sval);
+						if(col >= SoobaConst.SLOT_s_F &&col < (SoobaConst.SLOT_s_F + itemDataList.get(row).getSlot())){
+							itemDataList.get(row).setEx_abi((col-SoobaConst.SLOT_s_F),streamtokenizer.sval);
 						}
 
 						col++;
@@ -632,15 +632,15 @@ public class dataManager extends AbstractTableModel {
 					//数字の場合
 					if (streamtokenizer.ttype == StreamTokenizer.TT_NUMBER) {
 						System.out.println("nval"+line +":"+ streamtokenizer.nval);
-						if(col == sooba_const.CATEGORY_F)
+						if(col == SoobaConst.CATEGORY_F)
 							itemDataList.get(row).setCategory((int)streamtokenizer.nval);
-						if(col == sooba_const.STOCKLINE_F)
+						if(col == SoobaConst.STOCKLINE_F)
 							itemDataList.get(row).setStock((int)streamtokenizer.nval);
-						if(col == sooba_const.WATCHLINE_F)
+						if(col == SoobaConst.WATCHLINE_F)
 							itemDataList.get(row).setWatch((int)streamtokenizer.nval);
-						if(col == sooba_const.ELEMENT_F)
+						if(col == SoobaConst.ELEMENT_F)
 							itemDataList.get(row).setElement((int)streamtokenizer.nval);
-						if(col == sooba_const.SLOTNUM_F)
+						if(col == SoobaConst.SLOTNUM_F)
 							itemDataList.get(row).setSlot((int)streamtokenizer.nval);
 
 						col++;
@@ -679,7 +679,7 @@ public class dataManager extends AbstractTableModel {
 			}
 
 			filereader.close();
-			sooba_const.DATACHANGE = 0;
+			SoobaConst.DATACHANGE = 0;
 //			itemDataList.get(0).printAllData();
 //			itemDataList.get(1).printAllData();
 //			itemDataList.get(2).printAllData();
@@ -687,14 +687,14 @@ public class dataManager extends AbstractTableModel {
 			System.out.println(itemDataList.size());
 
 		} catch (IOException e) {
-			status_info.set_status_label("新しいファイルを作成します。");
+			StatusInfo.set_status_label("新しいファイルを作成します。");
 			File fl = new File(FILENAME);
-			sooba_const.openData = 1;
+			SoobaConst.openData = 1;
 			try {
 				fl.createNewFile();
 			} catch (IOException e1) {
-				status_info.set_status_label("ファイルの作成に失敗しました。");
-				sooba_const.openData = 1;
+				StatusInfo.set_status_label("ファイルの作成に失敗しました。");
+				SoobaConst.openData = 1;
 			}
 		}
 
@@ -819,7 +819,7 @@ public class dataManager extends AbstractTableModel {
 
 				bufferWriter.write("SoobaDataFormat07");
 				bufferWriter.newLine();
-			while (i < dataManager.getSize()) {
+			while (i < DataManager.getSize()) {
 				bufferWriter.write(getItemDataF(i));
 				bufferWriter.newLine();
 
@@ -828,7 +828,7 @@ public class dataManager extends AbstractTableModel {
 				i++;
 			}
 
-			sooba_const.DATACHANGE = 0;
+			SoobaConst.DATACHANGE = 0;
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -851,7 +851,7 @@ public class dataManager extends AbstractTableModel {
 
 	static void makeDataMap(){
 		iDMList.clear();
-		for(int j=0;j<sooba_const.MAXTAB;j++){
+		for(int j=0;j<SoobaConst.MAXTAB;j++){
 			iDMList.add(new ItemDataMap());
 
 			for(int i=0;i<itemDataList.size();i++){
@@ -875,7 +875,7 @@ public class dataManager extends AbstractTableModel {
 	}
 
 	static void setInfoData(int row){
-		infoManager.setInfo("");
+		InfoManager.setInfo("");
 		if(row < itemDataList.size() && getIndex(row) != -1)
 			if(itemDataList.get(getIndex(row)).getName() != null)
 				infoman.setInfo(itemDataList.get(getIndex(row)));
@@ -999,12 +999,12 @@ public class dataManager extends AbstractTableModel {
 				itemDataList.add(newItem);
 			}
 
-			sooba_const.DATACHANGE =1;
+			SoobaConst.DATACHANGE =1;
 		}
 		if (row < itemDataList.size() && getIndex(row) != -1){
 			itemDataList.get(getIndex(row)).setWatch(newItem.getWatch());
 			itemDataList.get(getIndex(row)).setName(newItem.getName());
-			sooba_const.DATACHANGE =1;
+			SoobaConst.DATACHANGE =1;
 		}
 		makeDataMap();
 		fireTableDataChanged();

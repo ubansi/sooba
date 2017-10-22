@@ -5,25 +5,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 
-public class returnDialog extends JDialog implements ActionListener {
+public class FileChangeDialog extends JDialog implements ActionListener {
 
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
-	Button btn_y = new Button("はい");
-	Button btn_n = new Button("いいえ");
-	static Label lab;
-	static MyTable table;
+	Button btn_y = new Button("保存する");
+	Button btn_n = new Button("保存しない");
 
-	public returnDialog(window_setup frame) {
+	public FileChangeDialog(WindowSetup frame) {
+
+		// TODO 自動生成されたコンストラクター・スタブ
 		super(frame);
-
+		// setSize(200,120);
 		setModal(true);
 		setLocationRelativeTo(frame);
 		getContentPane().setLayout(new FlowLayout());
-		lab = new Label("取り消しますか？");
+		Label lab = new Label("データを保存しますか？");
 
 		getContentPane().add(lab);
 		getContentPane().add(btn_y);
@@ -34,21 +34,19 @@ public class returnDialog extends JDialog implements ActionListener {
 		pack();
 		setVisible(true);
 	}
-	
-	static public void setTable(MyTable NowTable){
-		table = NowTable;	
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO 自動生成されたメソッド・スタブ
 		Object obj = e.getSource();
 		if (obj == btn_y) {
-			dataManager.removeLast(table.getSelectedRow());
-			graphManager.setGraphParam(table.getSelectedRow());
-			sooba_const.DATACHANGE = 1;
+			DataManager.SaveTable();
+			SoobaConst.DATACHANGE = 0;
 			dispose();
+			System.exit(0);
 		} else if (obj == btn_n) {
 			dispose();
+			System.exit(0);
 		}
 
 	}

@@ -1,10 +1,10 @@
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class exit implements WindowListener {
-	window_setup frame;
+public class Exit implements WindowListener {
+	WindowSetup frame;
 
-	exit(window_setup window_setup) {
+	Exit(WindowSetup window_setup) {
 		this.frame = window_setup;
 	}
 
@@ -17,17 +17,17 @@ public class exit implements WindowListener {
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
-		confManager.saveConf();
+		ConfManager.saveConf();
 
-		if (sooba_const.DATACHANGE != 0) {
+		if (SoobaConst.DATACHANGE != 0) {
 
 			// fileChangeDialog dlg =
-			new fileChangeDialog(frame);
+			new FileChangeDialog(frame);
 
 		} else {
 			// データのクリア
-			graphManager.graphDataClear();
-			dataManager.dataClear();
+			GraphManager.graphDataClear();
+			DataManager.dataClear();
 			frame.dispose();
 			System.exit(0);
 		}

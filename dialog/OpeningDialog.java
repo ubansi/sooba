@@ -6,7 +6,7 @@ import java.net.URL;
 
 import javax.swing.JFrame;
 
-public class openingDialog extends JFrame {
+public class OpeningDialog extends JFrame {
 
 	/**
 	 *
@@ -22,7 +22,7 @@ public class openingDialog extends JFrame {
 
 	Image p = getToolkit().getImage(url);
 
-	public openingDialog(window_setup frame) {
+	public OpeningDialog(WindowSetup frame) {
 		f = this;
 
 		setLocationRelativeTo(frame);

@@ -6,10 +6,10 @@
  *
  */
 
-public class Sooba_main_class {
+public class Main {
 
 	public static void main(String[] args) {
-		new window_setup();
+		new WindowSetup();
 
 	}
 

@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 
-public class configDialog extends JDialog implements ActionListener {
+public class ConfigDialog extends JDialog implements ActionListener {
 
 	/**
 	 *
@@ -17,7 +17,7 @@ public class configDialog extends JDialog implements ActionListener {
 	Button btn_n = new Button("キャンセル");
 	Checkbox c1 = new Checkbox("インポート時に足りないものを最後に追加する");
 
-	public configDialog(window_setup frame) {
+	public ConfigDialog(WindowSetup frame) {
 
 		super(frame);
 		setModal(true);
@@ -37,7 +37,7 @@ public class configDialog extends JDialog implements ActionListener {
 
 		getContentPane().add(p1);
 
-		if(sooba_const.INPORTNEW == 1)
+		if(SoobaConst.INPORTNEW == 1)
 			c1.setState(rootPaneCheckingEnabled);
 		
 		btn_y.addActionListener(this);
@@ -54,9 +54,9 @@ public class configDialog extends JDialog implements ActionListener {
 		if (obj == btn_y) {
 			if (c1.getState()) {
 				// 追加する
-				sooba_const.INPORTNEW = 1;
+				SoobaConst.INPORTNEW = 1;
 			} else {
-				sooba_const.INPORTNEW = 0;
+				SoobaConst.INPORTNEW = 0;
 			}
 
 		} else if (obj == btn_n) {

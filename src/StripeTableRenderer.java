@@ -33,23 +33,23 @@ public class StripeTableRenderer extends DefaultTableCellRenderer {
 
 		setHorizontalAlignment((value instanceof Number) ? RIGHT : LEFT);
 
-		if (column == sooba_const.TIMESTANPLINE) {
+		if (column == SoobaConst.TIMESTANPLINE) {
 			setForeground(Color.GRAY.darker());
 			setHorizontalAlignment(CENTER);
 			
-			if(dataManager.getName(row)!=null){
+			if(DataManager.getName(row)!=null){
 				c = Calendar.getInstance();
-				if(c.getTimeInMillis() - dataManager.getTimestampL(row) > 1000*60*60){
+				if(c.getTimeInMillis() - DataManager.getTimestampL(row) > 1000*60*60){
 					setForeground(D_color);
 			}
 			}
 		}
-		if (column == sooba_const.NAMELINE)
+		if (column == SoobaConst.NAMELINE)
 			setHorizontalAlignment(LEFT);
-		if (column == sooba_const.VALUELINE) {
+		if (column == SoobaConst.VALUELINE) {
 			setHorizontalAlignment(RIGHT);
 		}
-		if (column == sooba_const.DELTA) {
+		if (column == SoobaConst.DELTA) {
 			setHorizontalAlignment(RIGHT);
 		}
 		

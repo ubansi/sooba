@@ -28,16 +28,16 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellEditor;
 
-public class window_setup extends Frame implements ActionListener, Runnable,
+public class WindowSetup extends Frame implements ActionListener, Runnable,
 		ItemListener, MouseListener, ClipboardOwner, ChangeListener {
 
 	MenuItem fi1, fi2;
 	MenuItem ed1, ed2;
 	MenuItem conf1;
-	status_info ws_info;
-	static MyTable[] Table = new MyTable[sooba_const.MAXTAB];//MAXTAB=10
+	StatusInfo ws_info;
+	static MyTable[] Table = new MyTable[SoobaConst.MAXTAB];//MAXTAB=10
 
-	dataManager dm = new dataManager();
+	DataManager dm = new DataManager();
 	static JTabbedPane pane;
 
 	Button b1, b2;
@@ -47,7 +47,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 	static Label sum_value;
 	static Clipboard clipboad;
 	TableCellEditor tce;
-	graphManager gm;
+	GraphManager gm;
 	static Frame f;
 	/**
 	 * 0:all 1:watch 2:order
@@ -77,15 +77,15 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 	}
 
 	// ウインドウの作成
-	window_setup() {
+	WindowSetup() {
 
 		f = this;
 		// openingDialog od =
-		new openingDialog(this);
-		status_info sf = new status_info();
-		confManager.openConf();
+		new OpeningDialog(this);
+		StatusInfo sf = new StatusInfo();
+		ConfManager.openConf();
 
-		setTitle("SooBa Ver" + sooba_const.VER);
+		setTitle("SooBa Ver" + SoobaConst.VER);
 
 		// メニューバーの設置
 		MenuBar mb = new MenuBar();
@@ -127,7 +127,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		setMenuBar(mb);
 
 		// 終了ボタンの実装
-		addWindowListener(new exit(this));
+		addWindowListener(new Exit(this));
 
 		// setLayout(gbl);
 
@@ -146,7 +146,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 
 //		TextArea ta1 = new TextArea("値段をいれると\n次のアイテム名を\n勝手にコピーするよ", 5, 30);
 
-		gm = new graphManager();
+		gm = new GraphManager();
 
 
 		Label span = new Label("表示時間");
@@ -165,19 +165,19 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		c2.add("４週間");
 
 		c2.addItemListener(this);
-		c2.select(sooba_const.GRAPHSPAN);
+		c2.select(SoobaConst.GRAPHSPAN);
 
-		if (sooba_const.GRAPHSPAN == 0)
+		if (SoobaConst.GRAPHSPAN == 0)
 			gm.setScale(3);
-		else if (sooba_const.GRAPHSPAN == 1)
+		else if (SoobaConst.GRAPHSPAN == 1)
 			gm.setScale(12);
-		else if (sooba_const.GRAPHSPAN == 2)
+		else if (SoobaConst.GRAPHSPAN == 2)
 			gm.setScale(24);
-		else if (sooba_const.GRAPHSPAN == 3)
+		else if (SoobaConst.GRAPHSPAN == 3)
 			gm.setScale(48);
-		else if (sooba_const.GRAPHSPAN == 4)
+		else if (SoobaConst.GRAPHSPAN == 4)
 			gm.setScale(24 * 7);
-		else if (sooba_const.GRAPHSPAN == 5)
+		else if (SoobaConst.GRAPHSPAN == 5)
 			gm.setScale(24 * 7 * 4);
 		else
 			gm.setScale(24);
@@ -199,7 +199,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		pane = new JTabbedPane();
 
 
-		for(int i = 0;i < sooba_const.MAXTAB;i++){
+		for(int i = 0;i < SoobaConst.MAXTAB;i++){
 			Table[i] = new MyTable(dm);
 			Table[i].addMouseListener(this);
 			scroll[i] = new JScrollPane(Table[i]);
@@ -209,8 +209,8 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		pane.addTab("全部",scroll[0]);
 		pane.addTab("注目",scroll[1]);
 
-		for(int i =0;i < sooba_const.MAXTAB -2;i++){
-			pane.addTab(sooba_const.Category[i],scroll[i+2]);
+		for(int i =0;i < SoobaConst.MAXTAB -2;i++){
+			pane.addTab(SoobaConst.Category[i],scroll[i+2]);
 		}
 
 		pane.addChangeListener(this);
@@ -240,29 +240,29 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 
 		addLayout(p1, 1, 0, 3, 1);
 		addLayout(p2, 1, 1, 3, 1);
-		addLayout(infoManager.getTextArea(), 1, 2, 3, 1);
+		addLayout(InfoManager.getTextArea(), 1, 2, 3, 1);
 		// addLayout(p3, 1, 3, 3, 1);
 		addLayout(p4, 1, 4, 3, 1);
 		addLayout(gm, 1, 5, 3, 2);
 		addLayout(p5, 0, 8, 1, 1);
 
-		status_info.set_status_label("レイアウト完了");
+		StatusInfo.set_status_label("レイアウト完了");
 
 		th.start();
 		pack();
 		// setVisible(true);
 
 		dm.OpenTable(Table[0].getRowCount());
-		status_info.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
+		StatusInfo.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 
-		openingDialog.closeOpening();
+		OpeningDialog.closeOpening();
 
 
 
 		setVisible(true);
-		graphManager.setGraphParam(0);
+		GraphManager.setGraphParam(0);
 
-		dataManager.setInfoData(0);
+		DataManager.setInfoData(0);
 
 	}
 
@@ -272,41 +272,41 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 
 
 		if (obj == fi1) {
-			status_info.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
+			StatusInfo.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 			dm.OpenTable(Table[0].getRowCount());
-			graphManager
+			GraphManager
 					.setGraphParam(Table[0].getSelectedRow());
 		} else if (obj == fi2) {
-			dataManager.SaveTable();
-			status_info.set_status_label("データを保存しました   (" + Clock.getTime(1)
+			DataManager.SaveTable();
+			StatusInfo.set_status_label("データを保存しました   (" + Clock.getTime(1)
 					+ ")");
 		} else if (obj == b1) {
-			status_info.set_status_label("在庫がリセットされました");
+			StatusInfo.set_status_label("在庫がリセットされました");
 			dm.stockClear();
 		}
 		// インポート
 		if (obj == ed1) {
 			System.out.println("inport");
-			new inportDialog(this);
+			new InportDialog(this);
 			dm.fireTableDataChanged();
 		}
 		// エクスポート
 		if (obj == ed2) {
 			System.out.println("export");
-			new exportDialog(this);
+			new ExportDialog(this);
 		}
 		// 設定
 		if (obj == conf1) {
 			System.out.println("config");
-			new configDialog(this);
+			new ConfigDialog(this);
 		}
 		// 編集とりけし
 		if (obj == b2) {
 			System.out.println("return");
-			returnDialog.setTable(Table[pane.getSelectedIndex()]);
-			new returnDialog(this);
-			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),sooba_const.VALUELINE);
-			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),sooba_const.TIMESTANPLINE);
+			ReturnDialog.setTable(Table[pane.getSelectedIndex()]);
+			new ReturnDialog(this);
+			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),SoobaConst.VALUELINE);
+			dm.fireTableCellUpdated(Table[pane.getSelectedIndex()].getSelectedRow(),SoobaConst.TIMESTANPLINE);
 		}
 		if (obj == back){
 			System.out.println("back");
@@ -355,13 +355,13 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 			int rowPoint =Table[pane.getSelectedIndex()].rowAtPoint(e.getPoint());
 			Table[pane.getSelectedIndex()].changeSelection(rowPoint, 0, false,false);
 
-			new setDataDialog(this,rowPoint,dm);
+			new SetDataDialog(this,rowPoint,dm);
 		}
 		else{
 			copyClipboad(Table[pane.getSelectedIndex()].getSelectedRow());
-			graphManager.setGraphParam(Table[pane.getSelectedIndex()].getSelectedRow());
-			dataManager.setInfoData(Table[pane.getSelectedIndex()].getSelectedRow());
-			dataManager.printData(Table[pane.getSelectedIndex()].getSelectedRow());
+			GraphManager.setGraphParam(Table[pane.getSelectedIndex()].getSelectedRow());
+			DataManager.setInfoData(Table[pane.getSelectedIndex()].getSelectedRow());
+			DataManager.printData(Table[pane.getSelectedIndex()].getSelectedRow());
 		}
 	}
 
@@ -403,14 +403,14 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 		if (cho.getSelectedIndex() == 5)
 			gm.setScale(24*7*4);
 
-		sooba_const.GRAPHSPAN = cho.getSelectedIndex();
+		SoobaConst.GRAPHSPAN = cho.getSelectedIndex();
 		gm.setTimeOffset(0,Table[0].getSelectedRow());
 	}
 
 	static public void copyClipboad(int row) {
 		String s;
-		if (null != (s = dataManager.getName(row))) {
-			status_info.set_status_label(s + "をクリップボードにコピーしました");
+		if (null != (s = DataManager.getName(row))) {
+			StatusInfo.set_status_label(s + "をクリップボードにコピーしました");
 
 			clipboad = f.getToolkit().getSystemClipboard();
 			StringSelection contents = new StringSelection(s);

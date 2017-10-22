@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class inportDialog extends JDialog implements ActionListener {
+public class InportDialog extends JDialog implements ActionListener {
 
 	/**
 	 *
@@ -20,7 +20,7 @@ public class inportDialog extends JDialog implements ActionListener {
 	Button btn_n = new Button("キャンセル");
 	JTextArea ta = new JTextArea();
 
-	public inportDialog(window_setup frame) {
+	public InportDialog(WindowSetup frame) {
 
 		super(frame);
 		setModal(true);
@@ -170,31 +170,31 @@ public class inportDialog extends JDialog implements ActionListener {
 				System.out.println("serching = "+inItemDataList.get(k).getItemName());
 				if(inItemDataList.get(k).getCategory() > 1){
 
-					dataLine = dataManager.serchObj(inItemDataList.get(k).getItemName());
+					dataLine = DataManager.serchObj(inItemDataList.get(k).getItemName());
 	
 				}else{
-					dataLine = dataManager.serchObj(inItemDataList.get(k));
+					dataLine = DataManager.serchObj(inItemDataList.get(k));
 				}
 
 				
 				if (dataLine != -1) {
 					// インポートデータを挿入
-					dataManager.setValueInport(inItemDataList.get(k).getValue(), inItemDataList.get(k).getBaseTimeStamp(),dataLine);
-					sooba_const.DATACHANGE = 1;
+					DataManager.setValueInport(inItemDataList.get(k).getValue(), inItemDataList.get(k).getBaseTimeStamp(),dataLine);
+					SoobaConst.DATACHANGE = 1;
 
 				}
 				// 名前が見つからなかった場合は最後尾に追加
 				else {
-					if (sooba_const.INPORTNEW == 1) {
-						dataManager.addLast(inItemDataList.get(k));
-						sooba_const.DATACHANGE = 1;
+					if (SoobaConst.INPORTNEW == 1) {
+						DataManager.addLast(inItemDataList.get(k));
+						SoobaConst.DATACHANGE = 1;
 					}
 				}
 				
 				k++;				
 			}
 
-			status_info.set_status_label("インポートが完了しました");
+			StatusInfo.set_status_label("インポートが完了しました");
 			
 			dispose();
 		} else if (obj == btn_n) {
