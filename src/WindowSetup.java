@@ -293,7 +293,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		// エクスポート
 		if (obj == ed2) {
 			System.out.println("export");
-			new exportDialog(this);
+			new ExportDialog(this);
 		}
 		// 設定
 		if (obj == conf1) {

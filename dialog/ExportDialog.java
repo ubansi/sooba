@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class exportDialog extends JDialog implements ActionListener {
+public class ExportDialog extends JDialog implements ActionListener {
 
 	/**
 	 * 
@@ -21,7 +21,7 @@ public class exportDialog extends JDialog implements ActionListener {
 	StringBuffer exportString = new StringBuffer(",SooBaExportData07,");
 	JTextArea ta = new JTextArea();
 
-	public exportDialog(WindowSetup frame) {
+	public ExportDialog(WindowSetup frame) {
 
 		// TODO 自動生成されたコンストラクター・スタブ
 		super(frame);
