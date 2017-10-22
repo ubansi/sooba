@@ -15,7 +15,7 @@ public class fileChangeDialog extends JDialog implements ActionListener {
 	Button btn_y = new Button("保存する");
 	Button btn_n = new Button("保存しない");
 
-	public fileChangeDialog(window_setup frame) {
+	public fileChangeDialog(WindowSetup frame) {
 
 		// TODO 自動生成されたコンストラクター・スタブ
 		super(frame);

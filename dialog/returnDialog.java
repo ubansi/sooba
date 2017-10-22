@@ -17,7 +17,7 @@ public class returnDialog extends JDialog implements ActionListener {
 	static Label lab;
 	static MyTable table;
 
-	public returnDialog(window_setup frame) {
+	public returnDialog(WindowSetup frame) {
 		super(frame);
 
 		setModal(true);

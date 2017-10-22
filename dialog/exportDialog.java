@@ -21,7 +21,7 @@ public class exportDialog extends JDialog implements ActionListener {
 	StringBuffer exportString = new StringBuffer(",SooBaExportData07,");
 	JTextArea ta = new JTextArea();
 
-	public exportDialog(window_setup frame) {
+	public exportDialog(WindowSetup frame) {
 
 		// TODO 自動生成されたコンストラクター・スタブ
 		super(frame);

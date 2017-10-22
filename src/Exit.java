@@ -2,9 +2,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public class Exit implements WindowListener {
-	window_setup frame;
+	WindowSetup frame;
 
-	Exit(window_setup window_setup) {
+	Exit(WindowSetup window_setup) {
 		this.frame = window_setup;
 	}
 

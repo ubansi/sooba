@@ -36,7 +36,7 @@ public class DataManager extends AbstractTableModel {
 	public Object getValueAt(int row, int col) {
 
 		if (row < itemDataList.size()) {
-			if(window_setup.paneIndex == -1){
+			if(WindowSetup.paneIndex == -1){
 				if (col == SoobaConst.NAMELINE) {
 					return itemDataList.get(row).getName();
 				}
@@ -71,18 +71,18 @@ public class DataManager extends AbstractTableModel {
 			}
 			//オーダー品タブ
 			else{
-				if(row < iDMList.get(window_setup.paneIndex).getSize()){
+				if(row < iDMList.get(WindowSetup.paneIndex).getSize()){
 					if (col == SoobaConst.NAMELINE) {
-							return itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getName();
+							return itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getName();
 					}
 					if (col == SoobaConst.VALUELINE) {
-						int i = itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getValue();
+						int i = itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getValue();
 						return (i == 0) ? null : i;
 					}
 					if (col == SoobaConst.TIMESTANPLINE) {
 						Calendar t = Calendar.getInstance();
-						if(itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getTimeStampL() != 0){
-								t.setTimeInMillis(itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getTimeStampL());
+						if(itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getTimeStampL() != 0){
+								t.setTimeInMillis(itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getTimeStampL());
 							return String.format("%02d", t.get(Calendar.HOUR_OF_DAY))
 									+ ":"
 									+ String.format("%02d", t.get(Calendar.MINUTE));
@@ -91,9 +91,9 @@ public class DataManager extends AbstractTableModel {
 					if (col == SoobaConst.DELTA) {
 						int delta;
 						if (itemDataList.get(row).getSize() > 1) {
-							delta = itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getValue()
-									- itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getValue(
-											itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).getSize() - 2);
+							delta = itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getValue()
+									- itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getValue(
+											itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).getSize() - 2);
 							return String.format("%+d", delta);
 						}
 						return null;
@@ -130,7 +130,7 @@ public class DataManager extends AbstractTableModel {
 		while (itemDataList.size() <= row) {
 			itemDataList.add(new ItemData());
 		}
-		if(window_setup.paneIndex == -1){
+		if(WindowSetup.paneIndex == -1){
 			if (col == SoobaConst.NAMELINE) {
 				itemDataList.get(row).setName(value.toString());
 			}
@@ -152,18 +152,18 @@ public class DataManager extends AbstractTableModel {
 		}
 		else{
 			if (col == SoobaConst.NAMELINE) {
-				itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).setName(value.toString());
+				itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).setName(value.toString());
 			}
 			if (col == SoobaConst.VALUELINE) {
 
-				itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).setValue(newValue,Clock.getTimeNumLong());
+				itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).setValue(newValue,Clock.getTimeNumLong());
 				stock_sum();
 
 				fireTableCellUpdated(row, col + 1);
 				fireTableCellUpdated(row, col + 2);
 			}
 			if (col == SoobaConst.STOCKLINE) {
-				itemDataList.get(iDMList.get(window_setup.paneIndex).getCategoryIndex(row)).setStock(newValue);
+				itemDataList.get(iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row)).setStock(newValue);
 				stock_sum();
 			}
 
@@ -240,7 +240,7 @@ public class DataManager extends AbstractTableModel {
 		for (int i = 0; i < itemDataList.size(); i++) {
 			sum = itemDataList.get(i).getValue() * itemDataList.get(i).getStock() + sum;
 		}
-		window_setup.sum_value.setText("" + String.format("%.0f", sum / 1.05));
+		WindowSetup.sum_value.setText("" + String.format("%.0f", sum / 1.05));
 	}
 
 	public static int getSize() {
@@ -343,10 +343,10 @@ public class DataManager extends AbstractTableModel {
 	}
 
 	static int getIndex(int row){
-		if(window_setup.paneIndex == -1)
+		if(WindowSetup.paneIndex == -1)
 			return row;
 		else
-			return iDMList.get(window_setup.paneIndex).getCategoryIndex(row);
+			return iDMList.get(WindowSetup.paneIndex).getCategoryIndex(row);
 	}
 
 	public static int getTimestampEx(int row) {

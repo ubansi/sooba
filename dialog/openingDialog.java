@@ -22,7 +22,7 @@ public class openingDialog extends JFrame {
 
 	Image p = getToolkit().getImage(url);
 
-	public openingDialog(window_setup frame) {
+	public openingDialog(WindowSetup frame) {
 		f = this;
 
 		setLocationRelativeTo(frame);

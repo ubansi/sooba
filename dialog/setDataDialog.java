@@ -35,7 +35,7 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 	int maxpanel = 6;
 	int maxabi = 8;
 
-	setDataDialog(window_setup frame,int row,DataManager dm){
+	setDataDialog(WindowSetup frame,int row,DataManager dm){
 
 	super(frame);
 	setModal(true);

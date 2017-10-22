@@ -28,7 +28,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellEditor;
 
-public class window_setup extends Frame implements ActionListener, Runnable,
+public class WindowSetup extends Frame implements ActionListener, Runnable,
 		ItemListener, MouseListener, ClipboardOwner, ChangeListener {
 
 	MenuItem fi1, fi2;
@@ -77,7 +77,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 	}
 
 	// ウインドウの作成
-	window_setup() {
+	WindowSetup() {
 
 		f = this;
 		// openingDialog od =

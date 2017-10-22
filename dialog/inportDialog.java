@@ -20,7 +20,7 @@ public class inportDialog extends JDialog implements ActionListener {
 	Button btn_n = new Button("キャンセル");
 	JTextArea ta = new JTextArea();
 
-	public inportDialog(window_setup frame) {
+	public inportDialog(WindowSetup frame) {
 
 		super(frame);
 		setModal(true);

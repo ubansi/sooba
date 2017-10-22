@@ -17,7 +17,7 @@ public class configDialog extends JDialog implements ActionListener {
 	Button btn_n = new Button("キャンセル");
 	Checkbox c1 = new Checkbox("インポート時に足りないものを最後に追加する");
 
-	public configDialog(window_setup frame) {
+	public configDialog(WindowSetup frame) {
 
 		super(frame);
 		setModal(true);
