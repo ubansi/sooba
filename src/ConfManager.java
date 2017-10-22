@@ -10,7 +10,7 @@ import java.util.Properties;
 public class ConfManager {
 
 	public static void openConf() {
-		String configFile = "Sooba.conf";
+		String configFile = "sooba.conf";
 		Properties prop = new Properties();
 		FileInputStream fi;
 
@@ -50,7 +50,7 @@ public class ConfManager {
 	}
 
 	public static void saveConf() {
-		String configFile = "Sooba.conf";
+		String configFile = "sooba.conf";
 		BufferedWriter bufferWriter = null;
 
 		try {
