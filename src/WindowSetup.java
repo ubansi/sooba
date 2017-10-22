@@ -355,7 +355,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 			int rowPoint =Table[pane.getSelectedIndex()].rowAtPoint(e.getPoint());
 			Table[pane.getSelectedIndex()].changeSelection(rowPoint, 0, false,false);
 
-			new setDataDialog(this,rowPoint,dm);
+			new SetDataDialog(this,rowPoint,dm);
 		}
 		else{
 			copyClipboad(Table[pane.getSelectedIndex()].getSelectedRow());

@@ -14,7 +14,7 @@ import java.awt.event.ItemListener;
 import javax.swing.JDialog;
 
 
-public class setDataDialog extends JDialog implements ActionListener, ItemListener {
+public class SetDataDialog extends JDialog implements ActionListener, ItemListener {
 
 	/**
 	 *
@@ -35,7 +35,7 @@ public class setDataDialog extends JDialog implements ActionListener, ItemListen
 	int maxpanel = 6;
 	int maxabi = 8;
 
-	setDataDialog(WindowSetup frame,int row,DataManager dm){
+	SetDataDialog(WindowSetup frame,int row,DataManager dm){
 
 	super(frame);
 	setModal(true);
