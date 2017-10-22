@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 
-public class configDialog extends JDialog implements ActionListener {
+public class ConfigDialog extends JDialog implements ActionListener {
 
 	/**
 	 *
@@ -17,7 +17,7 @@ public class configDialog extends JDialog implements ActionListener {
 	Button btn_n = new Button("キャンセル");
 	Checkbox c1 = new Checkbox("インポート時に足りないものを最後に追加する");
 
-	public configDialog(WindowSetup frame) {
+	public ConfigDialog(WindowSetup frame) {
 
 		super(frame);
 		setModal(true);

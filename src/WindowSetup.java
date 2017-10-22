@@ -298,7 +298,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		// 設定
 		if (obj == conf1) {
 			System.out.println("config");
-			new configDialog(this);
+			new ConfigDialog(this);
 		}
 		// 編集とりけし
 		if (obj == b2) {
