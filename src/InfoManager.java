@@ -2,7 +2,7 @@ import java.awt.TextArea;
 import java.util.Calendar;
 
 
-public class infoManager {
+public class InfoManager {
 	
 	static TextArea ta =new TextArea("アイテム情報",5,30);
 

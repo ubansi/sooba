@@ -22,10 +22,10 @@ public class DataManager extends AbstractTableModel {
 	private static ArrayList<ItemData> itemDataList = new ArrayList<ItemData>();
 	static String FILENAME = new String(sooba_const.FILENAME);
 	static BufferedWriter bufferWriter = null;
-	static infoManager infoman;
+	static InfoManager infoman;
 
 	DataManager(){
-		infoman = new infoManager();
+		infoman = new InfoManager();
 		itemDataList.ensureCapacity(500);
 	}
 
@@ -875,7 +875,7 @@ public class DataManager extends AbstractTableModel {
 	}
 
 	static void setInfoData(int row){
-		infoManager.setInfo("");
+		InfoManager.setInfo("");
 		if(row < itemDataList.size() && getIndex(row) != -1)
 			if(itemDataList.get(getIndex(row)).getName() != null)
 				infoman.setInfo(itemDataList.get(getIndex(row)));

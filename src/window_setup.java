@@ -240,7 +240,7 @@ public class window_setup extends Frame implements ActionListener, Runnable,
 
 		addLayout(p1, 1, 0, 3, 1);
 		addLayout(p2, 1, 1, 3, 1);
-		addLayout(infoManager.getTextArea(), 1, 2, 3, 1);
+		addLayout(InfoManager.getTextArea(), 1, 2, 3, 1);
 		// addLayout(p3, 1, 3, 3, 1);
 		addLayout(p4, 1, 4, 3, 1);
 		addLayout(gm, 1, 5, 3, 2);
