@@ -4,8 +4,7 @@
 package com.sooba.entity;
 
 /**
- * @author ubansi
- * アプリ用設定内容
+ * @author ubansi アプリ用設定内容
  */
 public class Config {
 	/**
@@ -22,7 +21,6 @@ public class Config {
 	 * noadd:0 addnew:1
 	 */
 	private int propNameInportNew = 0;
-
 
 	public int getMaxRow() {
 		return maxRow;
