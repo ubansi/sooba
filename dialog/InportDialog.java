@@ -185,7 +185,7 @@ public class InportDialog extends JDialog implements ActionListener {
 				}
 				// 名前が見つからなかった場合は最後尾に追加
 				else {
-					if (SoobaConst.INPORTNEW == 1) {
+					if (SoobaConst.INPORT_NEW == 1) {
 						DataManager.addLast(inItemDataList.get(k));
 						SoobaConst.DATACHANGE = 1;
 					}

@@ -8,32 +8,42 @@ import java.io.OutputStreamWriter;
 import java.util.Properties;
 
 public class ConfManager {
+	private final static String CONF_FILE_NAME = "sooba.conf";
+
+	private final static String PROP_NAME_MAX_ROW = "MaxRow";
+
+	private final static String PROP_NAME_GRAPH_SPAN = "GraphSpan";
+
+	private final static String PROP_NAME_INPORT_NEW = "InportNew";
 
 	public static void openConf() {
-		String configFile = "sooba.conf";
 		Properties prop = new Properties();
 		FileInputStream fi;
 
 		try {
-			fi = new FileInputStream(configFile);
+			fi = new FileInputStream(CONF_FILE_NAME);
 			prop.load(fi);
 
-			if (prop.getProperty("MaxRow") != null)
-				SoobaConst.MAXROW = Integer.parseInt(prop
-						.getProperty("MaxRow"));
-			System.out.println("MaxRow=" + SoobaConst.MAXROW);
-			if (prop.getProperty("graphSpan") != null)
-				SoobaConst.GRAPHSPAN = Integer.parseInt(prop
-						.getProperty("graphSpan"));
-			System.out.println("graphSpan=" + SoobaConst.GRAPHSPAN);
-			if (prop.getProperty("inportNew") != null)
-				SoobaConst.INPORTNEW = Integer.parseInt(prop
-						.getProperty("inportNew"));
+			if (prop.getProperty(PROP_NAME_MAX_ROW) != null)
+				SoobaConst.MAX_ROW = Integer.parseInt(prop
+						.getProperty(PROP_NAME_MAX_ROW));
+
+			System.out.println(PROP_NAME_MAX_ROW + "=" + SoobaConst.MAX_ROW);
+
+			if (prop.getProperty(PROP_NAME_GRAPH_SPAN) != null)
+				SoobaConst.GRAPH_SPAN = Integer.parseInt(prop
+						.getProperty(PROP_NAME_GRAPH_SPAN));
+
+			System.out.println(PROP_NAME_GRAPH_SPAN +"=" + SoobaConst.GRAPH_SPAN);
+
+			if (prop.getProperty(PROP_NAME_INPORT_NEW) != null)
+				SoobaConst.INPORT_NEW = Integer.parseInt(prop
+						.getProperty(PROP_NAME_INPORT_NEW));
 
 			fi.close();
 
 		} catch (FileNotFoundException e) {
-			File fl = new File(configFile);
+			File fl = new File(CONF_FILE_NAME);
 			try {
 				fl.createNewFile();
 			} catch (IOException e1) {
@@ -50,20 +60,19 @@ public class ConfManager {
 	}
 
 	public static void saveConf() {
-		String configFile = "sooba.conf";
 		BufferedWriter bufferWriter = null;
 
 		try {
 			bufferWriter = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(configFile)));
+					new FileOutputStream(CONF_FILE_NAME)));
 
 			bufferWriter.write("# SooBa config file");
 			bufferWriter.newLine();
-			bufferWriter.write("MaxRow=" + SoobaConst.MAXROW);
+			bufferWriter.write(PROP_NAME_MAX_ROW+ "=" + SoobaConst.MAX_ROW);
 			bufferWriter.newLine();
-			bufferWriter.write("graphSpan=" + SoobaConst.GRAPHSPAN);
+			bufferWriter.write(PROP_NAME_GRAPH_SPAN +"=" + SoobaConst.GRAPH_SPAN);
 			bufferWriter.newLine();
-			bufferWriter.write("inportNew=" + SoobaConst.INPORTNEW);
+			bufferWriter.write(PROP_NAME_INPORT_NEW + "=" + SoobaConst.INPORT_NEW);
 			bufferWriter.newLine();
 
 		} catch (FileNotFoundException e) {

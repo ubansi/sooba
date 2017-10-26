@@ -165,19 +165,19 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		c2.add("４週間");
 
 		c2.addItemListener(this);
-		c2.select(SoobaConst.GRAPHSPAN);
+		c2.select(SoobaConst.GRAPH_SPAN);
 
-		if (SoobaConst.GRAPHSPAN == 0)
+		if (SoobaConst.GRAPH_SPAN == 0)
 			gm.setScale(3);
-		else if (SoobaConst.GRAPHSPAN == 1)
+		else if (SoobaConst.GRAPH_SPAN == 1)
 			gm.setScale(12);
-		else if (SoobaConst.GRAPHSPAN == 2)
+		else if (SoobaConst.GRAPH_SPAN == 2)
 			gm.setScale(24);
-		else if (SoobaConst.GRAPHSPAN == 3)
+		else if (SoobaConst.GRAPH_SPAN == 3)
 			gm.setScale(48);
-		else if (SoobaConst.GRAPHSPAN == 4)
+		else if (SoobaConst.GRAPH_SPAN == 4)
 			gm.setScale(24 * 7);
-		else if (SoobaConst.GRAPHSPAN == 5)
+		else if (SoobaConst.GRAPH_SPAN == 5)
 			gm.setScale(24 * 7 * 4);
 		else
 			gm.setScale(24);
@@ -403,7 +403,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		if (cho.getSelectedIndex() == 5)
 			gm.setScale(24*7*4);
 
-		SoobaConst.GRAPHSPAN = cho.getSelectedIndex();
+		SoobaConst.GRAPH_SPAN = cho.getSelectedIndex();
 		gm.setTimeOffset(0,Table[0].getSelectedRow());
 	}
 
