@@ -46,34 +46,34 @@ public class GraphManager extends Canvas {
 	@Override
 	public void paint(Graphics g) {
 		//		c = this;
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+		Graphics2D graph = (Graphics2D) g;
+		graph.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
 		setBackground(BACK_GROUND);
 
 		// 最高値と最安値の表示
 		if (highValue * lowValue != 0 && (highValue != lowValue)) {
-			g2.setColor(PRICE_LIMIT);
-			g2.drawLine(0, (int) (getHeight() * 0.15), getWidth(),
+			graph.setColor(PRICE_LIMIT);
+			graph.drawLine(0, (int) (getHeight() * 0.15), getWidth(),
 					(int) (getHeight() * 0.15));
-			g2.drawLine(0, (int) (getHeight() * 0.85), getWidth(),
+			graph.drawLine(0, (int) (getHeight() * 0.85), getWidth(),
 					(int) (getHeight() * 0.85));
 
-			g2.drawString("最高値=" + highValue, 0, 13);
-			g2.drawString("最安値=" + lowValue, 0, (int) (getHeight() * 0.90 + 13));
+			graph.drawString("最高値=" + highValue, 0, 13);
+			graph.drawString("最安値=" + lowValue, 0, (int) (getHeight() * 0.90 + 13));
 
-			g2.setColor(AVERAGE);
-			g2.drawLine(0, priceToY(averageValue), getWidth(), priceToY(averageValue));
-			g2.drawString("平均=" + averageValue, 0, priceToY(averageValue) - 13);
+			graph.setColor(AVERAGE);
+			graph.drawLine(0, priceToY(averageValue), getWidth(), priceToY(averageValue));
+			graph.drawString("平均=" + averageValue, 0, priceToY(averageValue) - 13);
 
 		}
 
-		g2.setColor(PRICE);
+		graph.setColor(PRICE);
 
 		if (dataPrice.size() > 1) {
 			// 時刻ラインの表示
-			g2.setColor(TIME_SCALE);
+			graph.setColor(TIME_SCALE);
 			Calendar nowtimeline = Calendar.getInstance();
 			Calendar timeline0 = Calendar.getInstance();
 
@@ -88,27 +88,27 @@ public class GraphManager extends Canvas {
 
 				if (i % 2 == 0) {
 					if (timeScaleHour < 24 * 7) {
-						g2.drawString("0:00", timeline0X - 10, (int) (getHeight() * 0.15) - 3);
-						g2.setColor(DATE);
-						g2.drawString(getDateString(timeline0),
+						graph.drawString("0:00", timeline0X - 10, (int) (getHeight() * 0.15) - 3);
+						graph.setColor(DATE);
+						graph.drawString(getDateString(timeline0),
 								timeline0X - 10, (int) (getHeight() * 0.10) - 3);
-						g2.setColor(TIME_SCALE);
+						graph.setColor(TIME_SCALE);
 
 					} else if (timeScaleHour < 24 * 7 * 4) {
-						g2.setColor(DATE);
-						g2.drawString(getDateString(timeline0),
+						graph.setColor(DATE);
+						graph.drawString(getDateString(timeline0),
 								timeline0X - 10, (int) (getHeight() * 0.15) - 3);
-						g2.setColor(TIME_SCALE);
+						graph.setColor(TIME_SCALE);
 					}
 
 					if (timeScaleHour < 24 * 7 * 4) {
-						g2.drawLine(timeline0X, (int) (getHeight() * 0.15) - 1,
+						graph.drawLine(timeline0X, (int) (getHeight() * 0.15) - 1,
 								timeline0X, (int) (getHeight() * 0.85) + 1);
 					} else {
 					}
 				} else if (timeScaleHour < 24 * 7) {
-					g2.drawString("12:00", timeline0X - 13, (int) (getHeight() * 0.15) - 3);
-					g2.drawLine(timeline0X, (int) (getHeight() * 0.15) - 1, timeline0X, (int) (getHeight() * 0.85) + 1);
+					graph.drawString("12:00", timeline0X - 13, (int) (getHeight() * 0.15) - 3);
+					graph.drawLine(timeline0X, (int) (getHeight() * 0.15) - 1, timeline0X, (int) (getHeight() * 0.85) + 1);
 				}
 
 				i++;
@@ -127,39 +127,39 @@ public class GraphManager extends Canvas {
 
 				System.out.println(timeline_m0.get(Calendar.MONTH));
 
-				g2.setColor(DATE);
-				g2.drawString(getDateString(timeline_m0),
+				graph.setColor(DATE);
+				graph.drawString(getDateString(timeline_m0),
 						timestampToX(timeline_m0.getTimeInMillis()) - 10, (int) (getHeight() * 0.10) - 3);
 
-				g2.setColor(TIME_SCALE);
-				g2.drawLine(timestampToX(timeline_m0.getTimeInMillis()), (int) (getHeight() * 0.15) - 1,
+				graph.setColor(TIME_SCALE);
+				graph.drawLine(timestampToX(timeline_m0.getTimeInMillis()), (int) (getHeight() * 0.15) - 1,
 						timestampToX(timeline_m0.getTimeInMillis()), (int) (getHeight() * 0.85) + 1);
 
-				g2.setColor(DATE);
-				g2.drawString(getDateString(timeline_m1),
+				graph.setColor(DATE);
+				graph.drawString(getDateString(timeline_m1),
 						timestampToX(timeline_m1.getTimeInMillis()) - 10, (int) (getHeight() * 0.10) - 3);
 
-				g2.setColor(TIME_SCALE);
-				g2.drawLine(timestampToX(timeline_m1.getTimeInMillis()), (int) (getHeight() * 0.15) - 1,
+				graph.setColor(TIME_SCALE);
+				graph.drawLine(timestampToX(timeline_m1.getTimeInMillis()), (int) (getHeight() * 0.15) - 1,
 						timestampToX(timeline_m1.getTimeInMillis()), (int) (getHeight() * 0.85) + 1);
 
 			}
 
 			i = 0;
 
-			g2.setColor(PRICE);
+			graph.setColor(PRICE);
 			// 価格が変動しているもの
 			if (lowValue != highValue) {
-				drawPrice(dataPrice, dataTime, g2);
+				drawPrice(dataPrice, dataTime, graph);
 			}
 			// 価格が変動していないものは中心に線を引く
 			else if (lowValue == highValue && lowValue != 0) {
-				g2.drawLine(0, (int) (getHeight() / 2),
+				graph.drawLine(0, (int) (getHeight() / 2),
 						(int) (getWidth() * 0.8), (int) (getHeight() / 2));
 			}
 
 		} else {
-			g2.drawString("No Data", (int) getWidth() / 2 - 20,
+			graph.drawString("No Data", (int) getWidth() / 2 - 20,
 					(int) getHeight() / 2);
 		}
 
