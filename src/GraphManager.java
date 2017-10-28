@@ -83,32 +83,33 @@ public class GraphManager extends Canvas {
 				timeline0.set(nowtimeline.get(Calendar.YEAR),
 						nowtimeline.get(Calendar.MONTH),
 						nowtimeline.get(Calendar.DATE)+2, -12 * i, 0, 0);
+				int timeline0X = timestampToX(timeline0.getTimeInMillis());
 
 				if (i % 2 == 0) {
 					if (timeScaleHour < 24 * 7){
-						g2.drawString("0:00",timestampToX(timeline0.getTimeInMillis()) - 10,(int)(getHeight()*0.15)-3);
+						g2.drawString("0:00",timeline0X - 10,(int)(getHeight()*0.15)-3);
 						g2.setColor(DATE);
 						g2.drawString(getDateString(timeline0),
-								timestampToX(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
+								timeline0X - 10, (int)(getHeight()*0.10)-3);
 						g2.setColor(TIME_SCALE);
 
 					}
 					else if(timeScaleHour < 24 * 7 * 4){
 						g2.setColor(DATE);
 						g2.drawString(getDateString(timeline0),
-								timestampToX(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.15)-3);
+								timeline0X - 10, (int)(getHeight()*0.15)-3);
 						g2.setColor(TIME_SCALE);
 					}
 
 					if(timeScaleHour < 24*7*4){
-						g2.drawLine(timestampToX(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,
-							timestampToX(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
+						g2.drawLine(timeline0X,	(int) (getHeight() * 0.15) - 1,
+							timeline0X,	(int) (getHeight() * 0.85) + 1);
 					}
 					else{
 					}
 				} else if (timeScaleHour < 24 * 7) {
-					g2.drawString("12:00",timestampToX(timeline0.getTimeInMillis()) - 13, (int)(getHeight()*0.15)-3);
-					g2.drawLine(timestampToX(timeline0.getTimeInMillis()),(int) (getHeight() * 0.15) - 1,timestampToX(timeline0.getTimeInMillis()),(int) (getHeight() * 0.85) + 1);
+					g2.drawString("12:00",timeline0X - 13, (int)(getHeight()*0.15)-3);
+					g2.drawLine(timeline0X,(int) (getHeight() * 0.15) - 1,timeline0X,(int) (getHeight() * 0.85) + 1);
 				}
 
 				i++;
