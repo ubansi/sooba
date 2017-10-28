@@ -154,8 +154,9 @@ public class GraphManager extends Canvas {
 			}
 			// 価格が変動していないものは中心に線を引く
 			else if (lowValue == highValue && lowValue != 0) {
-				graph.drawLine(0, (int) (getHeight() / 2),
-						(int) (getWidth() * 0.8), (int) (getHeight() / 2));
+				int halfHeight = (int) (getHeight()/2);
+
+				graph.drawLine(0, halfHeight,(int) (getWidth() * 0.8), halfHeight);
 			}
 
 		} else {
