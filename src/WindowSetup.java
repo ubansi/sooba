@@ -171,19 +171,19 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		c2.select(graphSpan);
 
 		if (graphSpan== 0)
-			gm.setScale(3);
+			gm.setScaleByHour(3);
 		else if (graphSpan == 1)
-			gm.setScale(12);
+			gm.setScaleByHour(12);
 		else if (graphSpan == 2)
-			gm.setScale(24);
+			gm.setScaleByHour(24);
 		else if (graphSpan == 3)
-			gm.setScale(48);
+			gm.setScaleByHour(48);
 		else if (graphSpan == 4)
-			gm.setScale(24 * 7);
+			gm.setScaleByHour(24 * 7);
 		else if (graphSpan == 5)
-			gm.setScale(24 * 7 * 4);
+			gm.setScaleByHour(24 * 7 * 4);
 		else
-			gm.setScale(24);
+			gm.setScaleByHour(24);
 
 		Label lname = new Label("現在時刻");
 		lname.setAlignment(Label.RIGHT);
@@ -394,17 +394,17 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 		Choice cho = (Choice) e.getItemSelectable();
 		if (cho.getSelectedIndex() == 0)
-			gm.setScale(3);
+			gm.setScaleByHour(3);
 		if (cho.getSelectedIndex() == 1)
-			gm.setScale(12);
+			gm.setScaleByHour(12);
 		if (cho.getSelectedIndex() == 2)
-			gm.setScale(24);
+			gm.setScaleByHour(24);
 		if (cho.getSelectedIndex() == 3)
-			gm.setScale(48);
+			gm.setScaleByHour(48);
 		if (cho.getSelectedIndex() == 4)
-			gm.setScale(24 * 7);
+			gm.setScaleByHour(24 * 7);
 		if (cho.getSelectedIndex() == 5)
-			gm.setScale(24*7*4);
+			gm.setScaleByHour(24*7*4);
 
 		SoobaConfig.setGraphSpan(cho.getSelectedIndex());
 

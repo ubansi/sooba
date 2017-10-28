@@ -256,8 +256,8 @@ public class GraphManager extends Canvas {
 
 	}
 
-	public void setScale(int scale) {
-		timeScaleHour = scale;// 3h
+	public void setScaleByHour(int hour) {
+		timeScaleHour = hour;
 		timeScale = 1000 * 60 * 60 * timeScaleHour * 1.25;
 		repaint();
 	}
