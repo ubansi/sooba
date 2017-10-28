@@ -25,8 +25,8 @@ public class GraphManager extends Canvas {
 	private static double timeScaleHour = 3;// 3h
 	private static double timeScale = 1000 * 60 * 60 * timeScaleHour * 1.25;
 
-	private static ArrayList<Integer> data_value = new ArrayList<Integer>();
-	private static ArrayList<Long> data_time = new ArrayList<Long>();
+	private static ArrayList<Integer> dataPrice = new ArrayList<Integer>();
+	private static ArrayList<Long> dataTime = new ArrayList<Long>();
 	private static int averageValue = 0;
 	private static Canvas c;
 	private static int timeOffset = 0;
@@ -63,14 +63,14 @@ public class GraphManager extends Canvas {
 			g2.drawString("最安値=" + lowValue, 0, (int) (getHeight() * 0.90 + 13));
 
 			g2.setColor(AVERAGE);
-			g2.drawLine(0, get_Y(averageValue), getWidth(), get_Y(averageValue));
-			g2.drawString("平均=" + averageValue, 0, get_Y(averageValue) - 13);
+			g2.drawLine(0, priceToY(averageValue), getWidth(), priceToY(averageValue));
+			g2.drawString("平均=" + averageValue, 0, priceToY(averageValue) - 13);
 
 		}
 
 		g2.setColor(PRICE);
 
-		if (data_value.size() > 1) {
+		if (dataPrice.size() > 1) {
 			// 時刻ラインの表示
 			g2.setColor(TIME_SCALE);
 			Calendar nowtimeline = Calendar.getInstance();
@@ -79,36 +79,36 @@ public class GraphManager extends Canvas {
 			nowtimeline.setTimeInMillis(nowTime);
 
 			int i = 0;
-			while (get_X(timeline0.getTimeInMillis()) > 0) {
+			while (timestampToX(timeline0.getTimeInMillis()) > 0) {
 				timeline0.set(nowtimeline.get(Calendar.YEAR),
 						nowtimeline.get(Calendar.MONTH),
 						nowtimeline.get(Calendar.DATE)+2, -12 * i, 0, 0);
 
 				if (i % 2 == 0) {
 					if (timeScaleHour < 24 * 7){
-						g2.drawString("0:00",get_X(timeline0.getTimeInMillis()) - 10,(int)(getHeight()*0.15)-3);
+						g2.drawString("0:00",timestampToX(timeline0.getTimeInMillis()) - 10,(int)(getHeight()*0.15)-3);
 						g2.setColor(DATE);
 						g2.drawString(getDateString(timeline0),
-								get_X(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
+								timestampToX(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
 						g2.setColor(TIME_SCALE);
 
 					}
 					else if(timeScaleHour < 24 * 7 * 4){
 						g2.setColor(DATE);
 						g2.drawString(getDateString(timeline0),
-								get_X(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.15)-3);
+								timestampToX(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.15)-3);
 						g2.setColor(TIME_SCALE);
 					}
 
 					if(timeScaleHour < 24*7*4){
-						g2.drawLine(get_X(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,
-							get_X(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
+						g2.drawLine(timestampToX(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,
+							timestampToX(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
 					}
 					else{
 					}
 				} else if (timeScaleHour < 24 * 7) {
-					g2.drawString("12:00",get_X(timeline0.getTimeInMillis()) - 13, (int)(getHeight()*0.15)-3);
-					g2.drawLine(get_X(timeline0.getTimeInMillis()),(int) (getHeight() * 0.15) - 1,get_X(timeline0.getTimeInMillis()),(int) (getHeight() * 0.85) + 1);
+					g2.drawString("12:00",timestampToX(timeline0.getTimeInMillis()) - 13, (int)(getHeight()*0.15)-3);
+					g2.drawLine(timestampToX(timeline0.getTimeInMillis()),(int) (getHeight() * 0.15) - 1,timestampToX(timeline0.getTimeInMillis()),(int) (getHeight() * 0.85) + 1);
 				}
 
 				i++;
@@ -131,18 +131,18 @@ public class GraphManager extends Canvas {
 
 				g2.setColor(DATE);
 				g2.drawString(getDateString(timeline_m0),
-						get_X(timeline_m0.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
+						timestampToX(timeline_m0.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
 
 				g2.setColor(TIME_SCALE);
-				g2.drawLine(get_X(timeline_m0.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,
-						get_X(timeline_m0.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
+				g2.drawLine(timestampToX(timeline_m0.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,
+						timestampToX(timeline_m0.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
 
 				g2.setColor(DATE);
 				g2.drawString(getDateString(timeline_m1),
-						get_X(timeline_m1.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
+						timestampToX(timeline_m1.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
 
 				g2.setColor(TIME_SCALE);
-				g2.drawLine(get_X(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,	get_X(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
+				g2.drawLine(timestampToX(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,	timestampToX(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
 
 			}
 
@@ -152,19 +152,19 @@ public class GraphManager extends Canvas {
 			// 価格が変動しているもの
 			if (lowValue != highValue) {
 				i = 0;
-				while (i < data_value.size() - 1) {
+				while (i < dataPrice.size() - 1) {
 					// 旧表示
 					// g2.drawLine(get_X(data_time.get(i)),get_Y(data_value.get(i)),get_X(data_time.get(i+1)),get_Y(data_value.get(i+1)));
 					// 水平線
-					g2.drawLine(get_X(data_time.get(i)),
-							get_Y(data_value.get(i)),
-							get_X(data_time.get(i + 1)),
-							get_Y(data_value.get(i)));
+					g2.drawLine(timestampToX(dataTime.get(i)),
+							priceToY(dataPrice.get(i)),
+							timestampToX(dataTime.get(i + 1)),
+							priceToY(dataPrice.get(i)));
 					// 垂直線
-					g2.drawLine(get_X(data_time.get(i + 1)),
-							get_Y(data_value.get(i)),
-							get_X(data_time.get(i + 1)),
-							get_Y(data_value.get(i + 1)));
+					g2.drawLine(timestampToX(dataTime.get(i + 1)),
+							priceToY(dataPrice.get(i)),
+							timestampToX(dataTime.get(i + 1)),
+							priceToY(dataPrice.get(i + 1)));
 					i++;
 				}
 				// System.out.println("i="+i+":"+(nowTime-data_time.get(i))+":"+get_X(data_time.get(i)));
@@ -208,13 +208,13 @@ public class GraphManager extends Canvas {
 
 		if (dataCount != 0) {
 
-			data_value = new ArrayList<Integer>();
-			data_time = new ArrayList<Long>();
+			dataPrice = new ArrayList<Integer>();
+			dataTime = new ArrayList<Long>();
 
 			int i = 0;
 			while (i < dataCount) {
-				data_value.add(DataManager.getValue(selectedRow, i));
-				data_time.add(DataManager.getTimestamp(selectedRow, i));
+				dataPrice.add(DataManager.getValue(selectedRow, i));
+				dataTime.add(DataManager.getTimestamp(selectedRow, i));
 				i++;
 			}
 
@@ -223,16 +223,16 @@ public class GraphManager extends Canvas {
 			long valueDim = 0;
 			if(dataCount > 1){
 				while(j+1 < dataCount){
-					valueDim += data_value.get(j)*(data_time.get(j+1)-data_time.get(j));
+					valueDim += dataPrice.get(j)*(dataTime.get(j+1)-dataTime.get(j));
 					j++;
 				}
 //				valueDim += data_value.get(j)*(data_time.get(dataCount-1)-data_time.get(j));
 
-				averageValue = (int) (valueDim / (data_time.get(dataCount-1)-data_time.get(0)));
+				averageValue = (int) (valueDim / (dataTime.get(dataCount-1)-dataTime.get(0)));
 			}
 			//データがひとつの時はそれが平均っしょ
 			else{
-				averageValue = data_value.get(0);
+				averageValue = dataPrice.get(0);
 			}
 
 
@@ -243,11 +243,11 @@ public class GraphManager extends Canvas {
 	/**
 	 * 値段をY座標に変換する関数
 	 *
-	 * @param value
+	 * @param price
 	 * @return
 	 */
-	private int get_Y(int value) {
-		double i = (value - minValueScale) / valueScale * getHeight();
+	private int priceToY(int price) {
+		double i = (price - minValueScale) / valueScale * getHeight();
 		return (int) (getHeight() - i);
 	}
 
@@ -257,7 +257,7 @@ public class GraphManager extends Canvas {
 	 * @param timeStamp
 	 * @return
 	 */
-	private int get_X(long timeStamp) {
+	private int timestampToX(long timeStamp) {
 		double minTimeScale = nowTime - (1000 * 60 * 60 * timeScaleHour);
 
 		return (int) ((getWidth() / timeScale) * (timeStamp - minTimeScale));
@@ -277,8 +277,8 @@ public class GraphManager extends Canvas {
 
 	public static void graphDataClear() {
 		// 値のクリア
-		data_value.clear();
-		data_time.clear();
+		dataPrice.clear();
+		dataTime.clear();
 	}
 
 	public void setTimeOffset(int i,int selectedRow){
