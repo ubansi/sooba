@@ -18,18 +18,16 @@ public class GraphManager extends Canvas {
 	private static int nowValue = 0;
 	private static long nowTime = 0;
 
-	static double valueScale = 0;
-	static double minValueScale = 0;
-	static double nv = 0.0;
+	private static double valueScale = 0;
+	private static double minValueScale = 0;
 	// static double t_scale = 1000*60*60*24*DAYS;
-	static double t_scale = 3;// 3h
-	static double timeScale = 1000 * 60 * 60 * t_scale * 1.25;
-	static double mintimeScale = 0;
-	static ArrayList<Integer> data_value = new ArrayList<Integer>();
-	static ArrayList<Long> data_time = new ArrayList<Long>();
-	static int averageValue = 0;
-	static Canvas c;
-	static int timeOffset = 0;
+	private static double timeScaleHour = 3;// 3h
+	private static double timeScale = 1000 * 60 * 60 * timeScaleHour * 1.25;
+	private static ArrayList<Integer> data_value = new ArrayList<Integer>();
+	private static ArrayList<Long> data_time = new ArrayList<Long>();
+	private static int averageValue = 0;
+	private static Canvas c;
+	private static int timeOffset = 0;
 
 	GraphManager(){
 		c = this;
@@ -77,7 +75,7 @@ public class GraphManager extends Canvas {
 						nowtimeline.get(Calendar.DATE)+2, -12 * i, 0, 0);
 
 				if (i % 2 == 0) {
-					if (t_scale < 24 * 7){
+					if (timeScaleHour < 24 * 7){
 						g2.drawString("0:00",get_X(timeline0.getTimeInMillis()) - 10,(int)(getHeight()*0.15)-3);
 						g2.setColor(Color.decode("#00ff7f"));
 						g2.drawString((timeline0.get(Calendar.MONTH) + 1) + "/"+ timeline0.get(Calendar.DAY_OF_MONTH),
@@ -85,20 +83,20 @@ public class GraphManager extends Canvas {
 						g2.setColor(Color.GREEN.darker().darker());
 
 					}
-					else if(t_scale < 24 * 7 * 4){
+					else if(timeScaleHour < 24 * 7 * 4){
 						g2.setColor(Color.decode("#00ff7f"));
 						g2.drawString((timeline0.get(Calendar.MONTH) + 1) + "/"+ timeline0.get(Calendar.DAY_OF_MONTH),
 								get_X(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.15)-3);
 						g2.setColor(Color.GREEN.darker().darker());
 					}
 
-					if(t_scale < 24*7*4){
+					if(timeScaleHour < 24*7*4){
 						g2.drawLine(get_X(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,
 							get_X(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
 					}
 					else{
 					}
-				} else if (t_scale < 24 * 7) {
+				} else if (timeScaleHour < 24 * 7) {
 					g2.drawString("12:00",get_X(timeline0.getTimeInMillis()) - 13, (int)(getHeight()*0.15)-3);
 					g2.drawLine(get_X(timeline0.getTimeInMillis()),(int) (getHeight() * 0.15) - 1,get_X(timeline0.getTimeInMillis()),(int) (getHeight() * 0.85) + 1);
 				}
@@ -107,7 +105,7 @@ public class GraphManager extends Canvas {
 
 			}
 
-			if(t_scale == 24 * 7 * 4){
+			if(timeScaleHour == 24 * 7 * 4){
 
 				Calendar timeline_m0 = Calendar.getInstance();
 				Calendar timeline_m1 = Calendar.getInstance();
@@ -252,15 +250,15 @@ public class GraphManager extends Canvas {
 	 * @return
 	 */
 	private int get_X(long timeStamp) {
-		double minTimeScale = nowTime - (1000 * 60 * 60 * t_scale);
+		double minTimeScale = nowTime - (1000 * 60 * 60 * timeScaleHour);
 
 		return (int) ((getWidth() / timeScale) * (timeStamp - minTimeScale));
 
 	}
 
 	public void setScale(int scale) {
-		t_scale = scale;// 3h
-		timeScale = 1000 * 60 * 60 * t_scale * 1.25;
+		timeScaleHour = scale;// 3h
+		timeScale = 1000 * 60 * 60 * timeScaleHour * 1.25;
 		repaint();
 	}
 

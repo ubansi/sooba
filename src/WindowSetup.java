@@ -49,7 +49,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 	static Label sum_value;
 	static Clipboard clipboad;
 	TableCellEditor tce;
-	GraphManager gm;
+	private GraphManager gm;
 	static Frame f;
 	/**
 	 * 0:all 1:watch 2:order
