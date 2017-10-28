@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 
+import com.sooba.entity.SoobaConfig;
+
 public class ConfigDialog extends JDialog implements ActionListener {
 
 	/**
@@ -37,9 +39,9 @@ public class ConfigDialog extends JDialog implements ActionListener {
 
 		getContentPane().add(p1);
 
-		if(SoobaConst.INPORT_NEW == 1)
+		if(SoobaConfig.getAddImport() == 1)
 			c1.setState(rootPaneCheckingEnabled);
-		
+
 		btn_y.addActionListener(this);
 		btn_n.addActionListener(this);
 
@@ -54,9 +56,9 @@ public class ConfigDialog extends JDialog implements ActionListener {
 		if (obj == btn_y) {
 			if (c1.getState()) {
 				// 追加する
-				SoobaConst.INPORT_NEW = 1;
+				SoobaConfig.setAddImport(1);
 			} else {
-				SoobaConst.INPORT_NEW = 0;
+				SoobaConfig.setAddImport(0);
 			}
 
 		} else if (obj == btn_n) {

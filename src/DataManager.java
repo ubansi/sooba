@@ -11,6 +11,8 @@ import java.util.Calendar;
 
 import javax.swing.table.AbstractTableModel;
 
+import com.sooba.entity.SoobaConfig;
+
 public class DataManager extends AbstractTableModel {
 
 	/**
@@ -197,7 +199,7 @@ public class DataManager extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return SoobaConst.MAX_ROW;
+		return SoobaConfig.getMaxRow();
 	}
 
 	@Override
@@ -558,7 +560,7 @@ public class DataManager extends AbstractTableModel {
 	public void remomveData(int i){
 		if(i < itemDataList.size()){
 			System.out.println(itemDataList.get(getIndex(i)).getItemName()+"のデータを削除しました");
-			
+
 //			itemDataList.get(getIndex(i)).DataClear();
 			itemDataList.remove(getIndex(i));
 			makeDataMap();

@@ -75,11 +75,5 @@ public class SoobaConst {
 	// 設定用
 	public static String FILE_NAME = "pso.csv";// ファイル名
 
-	public static int MAX_ROW = 99;// 最大行
-	public static int GRAPH_SPAN = 0;// グラフの表示時間
-	/**
-	 * noadd:0 addnew:1
-	 */
-	public static int INPORT_NEW = 0;// インポート時に新しく追加
 
 }

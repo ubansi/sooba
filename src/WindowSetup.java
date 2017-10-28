@@ -28,6 +28,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellEditor;
 
+import com.sooba.entity.SoobaConfig;
+
 public class WindowSetup extends Frame implements ActionListener, Runnable,
 		ItemListener, MouseListener, ClipboardOwner, ChangeListener {
 
@@ -165,19 +167,20 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		c2.add("４週間");
 
 		c2.addItemListener(this);
-		c2.select(SoobaConst.GRAPH_SPAN);
+		int graphSpan = SoobaConfig.getGraphSpan();
+		c2.select(graphSpan);
 
-		if (SoobaConst.GRAPH_SPAN == 0)
+		if (graphSpan== 0)
 			gm.setScale(3);
-		else if (SoobaConst.GRAPH_SPAN == 1)
+		else if (graphSpan == 1)
 			gm.setScale(12);
-		else if (SoobaConst.GRAPH_SPAN == 2)
+		else if (graphSpan == 2)
 			gm.setScale(24);
-		else if (SoobaConst.GRAPH_SPAN == 3)
+		else if (graphSpan == 3)
 			gm.setScale(48);
-		else if (SoobaConst.GRAPH_SPAN == 4)
+		else if (graphSpan == 4)
 			gm.setScale(24 * 7);
-		else if (SoobaConst.GRAPH_SPAN == 5)
+		else if (graphSpan == 5)
 			gm.setScale(24 * 7 * 4);
 		else
 			gm.setScale(24);
@@ -403,7 +406,8 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		if (cho.getSelectedIndex() == 5)
 			gm.setScale(24*7*4);
 
-		SoobaConst.GRAPH_SPAN = cho.getSelectedIndex();
+		SoobaConfig.setGraphSpan(cho.getSelectedIndex());
+
 		gm.setTimeOffset(0,Table[0].getSelectedRow());
 	}
 
