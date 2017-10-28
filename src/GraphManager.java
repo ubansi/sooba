@@ -13,10 +13,10 @@ public class GraphManager extends Canvas {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	static int highValue = 0;
-	static int lowValue = 0;
-	static int nowValue = 0;
-	static long nowTime = 0;
+	private static int highValue = 0;
+	private static int lowValue = 0;
+	private static int nowValue = 0;
+	private static long nowTime = 0;
 
 	static double valueScale = 0;
 	static double minValueScale = 0;
@@ -30,7 +30,7 @@ public class GraphManager extends Canvas {
 	static int averageValue = 0;
 	static Canvas c;
 	static int timeOffset = 0;
-	
+
 	GraphManager(){
 		c = this;
 	}
@@ -91,7 +91,7 @@ public class GraphManager extends Canvas {
 								get_X(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.15)-3);
 						g2.setColor(Color.GREEN.darker().darker());
 					}
-					
+
 					if(t_scale < 24*7*4){
 						g2.drawLine(get_X(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,
 							get_X(timeline0.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
@@ -106,40 +106,40 @@ public class GraphManager extends Canvas {
 				i++;
 
 			}
-			
+
 			if(t_scale == 24 * 7 * 4){
 
 				Calendar timeline_m0 = Calendar.getInstance();
 				Calendar timeline_m1 = Calendar.getInstance();
 				Calendar timeline_m2 = Calendar.getInstance();
 
-				
+
 				timeline_m0.set(nowtimeline.get(Calendar.YEAR),nowtimeline.get(Calendar.MONTH)  ,1,0, 0, 0);
 				timeline_m1.set(nowtimeline.get(Calendar.YEAR),nowtimeline.get(Calendar.MONTH)-1,14,0, 0, 0);
 				timeline_m2.set(nowtimeline.get(Calendar.YEAR),nowtimeline.get(Calendar.MONTH)-1,1,0, 0, 0);
-				
+
 				System.out.println(timeline_m0.get(Calendar.MONTH));
-				
-				
+
+
 				g2.setColor(Color.decode("#00ff7f"));
 				g2.drawString((timeline_m0.get(Calendar.MONTH) + 1) + "/"+ timeline_m0.get(Calendar.DAY_OF_MONTH),
 						get_X(timeline_m0.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
-				
+
 				g2.setColor(Color.GREEN.darker().darker());
 				g2.drawLine(get_X(timeline_m0.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,
 						get_X(timeline_m0.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
-				
+
 				g2.setColor(Color.decode("#00ff7f"));
 				g2.drawString((timeline_m1.get(Calendar.MONTH) + 1) + "/"+ timeline_m1.get(Calendar.DAY_OF_MONTH),
 						get_X(timeline_m1.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
-				
+
 				g2.setColor(Color.GREEN.darker().darker());
-				g2.drawLine(get_X(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,	get_X(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);				
-				
+				g2.drawLine(get_X(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,	get_X(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
+
 			}
-			
-			
-			
+
+
+
 			i = 0;
 
 			g2.setColor(Color.GREEN);
@@ -240,7 +240,7 @@ public class GraphManager extends Canvas {
 	 * @param value
 	 * @return
 	 */
-	int get_Y(int value) {
+	private int get_Y(int value) {
 		double i = (value - minValueScale) / valueScale * getHeight();
 		return (int) (getHeight() - i);
 	}
@@ -251,26 +251,26 @@ public class GraphManager extends Canvas {
 	 * @param timeStamp
 	 * @return
 	 */
-	int get_X(long timeStamp) {
+	private int get_X(long timeStamp) {
 		double minTimeScale = nowTime - (1000 * 60 * 60 * t_scale);
 
 		return (int) ((getWidth() / timeScale) * (timeStamp - minTimeScale));
 
 	}
 
-	void setScale(int scale) {
+	public void setScale(int scale) {
 		t_scale = scale;// 3h
 		timeScale = 1000 * 60 * 60 * t_scale * 1.25;
 		repaint();
 	}
 
-	static void graphDataClear() {
+	public static void graphDataClear() {
 		// 値のクリア
 		data_value.clear();
 		data_time.clear();
 	}
 
-	void setTimeOffset(int i,int selectedRow){
+	public void setTimeOffset(int i,int selectedRow){
 
 		if(i != 0 && timeOffset + i <= 0){
 			timeOffset = timeOffset + i;
