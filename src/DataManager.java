@@ -11,6 +11,7 @@ import java.util.Calendar;
 
 import javax.swing.table.AbstractTableModel;
 
+import com.sooba.constant.SoobaConst;
 import com.sooba.entity.SoobaConfig;
 
 public class DataManager extends AbstractTableModel {

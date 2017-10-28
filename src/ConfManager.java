@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.sooba.constant.SoobaConst;
 import com.sooba.entity.SoobaConfig;
 
 public class ConfManager {

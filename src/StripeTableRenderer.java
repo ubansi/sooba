@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 //オーバーライドをEclipseでやったら動いた。
 //http://terai.xrea.jp/Swing/StripeTable.html#notefoot_1
 
+import com.sooba.constant.SoobaConst;
+
 public class StripeTableRenderer extends DefaultTableCellRenderer {
 
 	/**

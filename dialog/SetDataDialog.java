@@ -13,6 +13,8 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JDialog;
 
+import com.sooba.constant.SoobaConst;
+
 
 public class SetDataDialog extends JDialog implements ActionListener, ItemListener {
 

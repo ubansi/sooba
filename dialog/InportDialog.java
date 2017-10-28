@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import com.sooba.constant.SoobaConst;
 import com.sooba.entity.SoobaConfig;
 
 public class InportDialog extends JDialog implements ActionListener {

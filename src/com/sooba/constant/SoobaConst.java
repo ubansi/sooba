@@ -1,6 +1,7 @@
+package com.sooba.constant;
 public class SoobaConst {
 	public static final String VER = "1.005test";// バージョン値
-	static String[] columnNames = { "アイテム名", "値段", "時間", "変動", "在庫" };
+	public static String[] columnNames = { "アイテム名", "値段", "時間", "変動", "在庫" };
 	public static final int NAMELINE = 0;// アイテム名
 	public static final int VALUELINE = 1;// 値段
 	public static final int TIMESTANPLINE = 2;// タイムスタンプ

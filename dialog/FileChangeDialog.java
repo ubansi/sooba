@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 
+import com.sooba.constant.SoobaConst;
+
 public class FileChangeDialog extends JDialog implements ActionListener {
 
 	/**

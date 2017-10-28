@@ -4,6 +4,8 @@ import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
+import com.sooba.constant.SoobaConst;
+
 public class MyTable extends JTable {
 	/**
 	 *

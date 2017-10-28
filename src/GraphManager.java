@@ -256,6 +256,11 @@ public class GraphManager extends Canvas {
 
 	}
 
+	/**
+	 * グラフに表示する期間の変更
+	 *
+	 * @param hour
+	 */
 	public void setScaleByHour(int hour) {
 		timeScaleHour = hour;
 		timeScale = 1000 * 60 * 60 * timeScaleHour * 1.25;

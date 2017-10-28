@@ -28,6 +28,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellEditor;
 
+import com.sooba.constant.SoobaConst;
 import com.sooba.entity.SoobaConfig;
 
 public class WindowSetup extends Frame implements ActionListener, Runnable,
