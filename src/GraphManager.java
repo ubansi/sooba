@@ -21,8 +21,10 @@ public class GraphManager extends Canvas {
 	private static double valueScale = 0;
 	private static double minValueScale = 0;
 	// static double t_scale = 1000*60*60*24*DAYS;
+
 	private static double timeScaleHour = 3;// 3h
 	private static double timeScale = 1000 * 60 * 60 * timeScaleHour * 1.25;
+
 	private static ArrayList<Integer> data_value = new ArrayList<Integer>();
 	private static ArrayList<Long> data_time = new ArrayList<Long>();
 	private static int averageValue = 0;

@@ -29,14 +29,15 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellEditor;
 
 import com.sooba.constant.SoobaConst;
+import com.sooba.constant.ViewConst;
 import com.sooba.entity.SoobaConfig;
 
 public class WindowSetup extends Frame implements ActionListener, Runnable,
 		ItemListener, MouseListener, ClipboardOwner, ChangeListener {
 
-	MenuItem fi1, fi2;
-	MenuItem ed1, ed2;
-	MenuItem conf1;
+	private MenuItem fi1, fi2;
+	private MenuItem ed1, ed2;
+	private MenuItem conf1;
 	StatusInfo ws_info;
 	static MyTable[] Table = new MyTable[SoobaConst.MAXTAB];//MAXTAB=10
 
@@ -159,32 +160,17 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		back.addActionListener(this);
 		forward.addActionListener(this);
 
-		Choice c2 = new Choice();
-		c2.add("３時間");
-		c2.add("１２時間");
-		c2.add("２４時間");
-		c2.add("４８時間");
-		c2.add("１週間");
-		c2.add("４週間");
+		Choice graphScale = createGraphScaleChoicer();
 
-		c2.addItemListener(this);
-		int graphSpan = SoobaConfig.getGraphSpan();
-		c2.select(graphSpan);
+		graphScale.addItemListener(this);
 
-		if (graphSpan== 0)
-			gm.setScaleByHour(3);
-		else if (graphSpan == 1)
-			gm.setScaleByHour(12);
-		else if (graphSpan == 2)
-			gm.setScaleByHour(24);
-		else if (graphSpan == 3)
-			gm.setScaleByHour(48);
-		else if (graphSpan == 4)
-			gm.setScaleByHour(24 * 7);
-		else if (graphSpan == 5)
-			gm.setScaleByHour(24 * 7 * 4);
-		else
-			gm.setScaleByHour(24);
+		int graphSpanConfig = SoobaConfig.getGraphSpan();
+		graphScale.select(graphSpanConfig);
+
+		String selectedSpan = graphScale.getSelectedItem();
+
+		int scaleHour = ViewConst.GRAPH_SCALE.get(selectedSpan);
+		gm.setScaleByHour(scaleHour);
 
 		Label lname = new Label("現在時刻");
 		lname.setAlignment(Label.RIGHT);
@@ -237,7 +223,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		p4.add(back);
 		p4.add(forward);
 		p4.add(span);
-		p4.add(c2);
+		p4.add(graphScale);
 
 		p5.setLayout(new GridLayout(1, 1));
 		p5.add(sf.get_status_label());
@@ -268,6 +254,21 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 		DataManager.setInfoData(0);
 
+	}
+
+	/**
+	 * グラフのスケール選択部分の作成
+	 * @return
+	 */
+	private Choice createGraphScaleChoicer() {
+
+		Choice graphScale = new Choice();
+
+		for(String scaleName:ViewConst.GRAPH_SCALE.keySet()) {
+			graphScale.add(scaleName);
+		}
+
+		return graphScale;
 	}
 
 	@Override
