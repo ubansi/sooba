@@ -20,7 +20,7 @@ public class SoobaConfig {
 	/**
 	 * noadd:0 addnew:1
 	 */
-	private static int propNameInportNew = 0;
+	private static int addImport = 0;
 
 
 
@@ -40,12 +40,12 @@ public class SoobaConfig {
 		SoobaConfig.graphSpan = graphSpan;
 	}
 
-	public static int getPropNameInportNew() {
-		return propNameInportNew;
+	public static int getAddImport() {
+		return addImport;
 	}
 
-	public static void setPropNameInportNew(int propNameInportNew) {
-		SoobaConfig.propNameInportNew = propNameInportNew;
+	public static void setAddImport(int addImport) {
+		SoobaConfig.addImport = addImport;
 	}
 
 

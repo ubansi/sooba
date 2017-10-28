@@ -10,6 +10,8 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import com.sooba.entity.SoobaConfig;
+
 public class InportDialog extends JDialog implements ActionListener {
 
 	/**
@@ -117,7 +119,7 @@ public class InportDialog extends JDialog implements ActionListener {
 							if(j == 2){
 								inItemDataList.get(row).setElement(Integer.parseInt(strAry[i]));
 							}
-							
+
 							if(j == 3){
 								inItemDataList.get(row).setSlot(Integer.parseInt(strAry[i]));
 							}
@@ -142,10 +144,10 @@ public class InportDialog extends JDialog implements ActionListener {
 							}
 
 						}
-						
+
 						j++;
 						i++;
-						
+
 						if(inItemDataList.get(row).getCategory() > 1){
 							if(j == 4){
 								j=0;row++;
@@ -162,7 +164,7 @@ public class InportDialog extends JDialog implements ActionListener {
 
 				i++;
 			}
-			
+
 			int k = 0;
 			while (k < inItemDataList.size()) {
 				// データを挿入する行
@@ -171,12 +173,12 @@ public class InportDialog extends JDialog implements ActionListener {
 				if(inItemDataList.get(k).getCategory() > 1){
 
 					dataLine = DataManager.serchObj(inItemDataList.get(k).getItemName());
-	
+
 				}else{
 					dataLine = DataManager.serchObj(inItemDataList.get(k));
 				}
 
-				
+
 				if (dataLine != -1) {
 					// インポートデータを挿入
 					DataManager.setValueInport(inItemDataList.get(k).getValue(), inItemDataList.get(k).getBaseTimeStamp(),dataLine);
@@ -185,17 +187,17 @@ public class InportDialog extends JDialog implements ActionListener {
 				}
 				// 名前が見つからなかった場合は最後尾に追加
 				else {
-					if (SoobaConst.INPORT_NEW == 1) {
+					if (SoobaConfig.getAddImport() == 1) {
 						DataManager.addLast(inItemDataList.get(k));
 						SoobaConst.DATACHANGE = 1;
 					}
 				}
-				
-				k++;				
+
+				k++;
 			}
 
 			StatusInfo.set_status_label("インポートが完了しました");
-			
+
 			dispose();
 		} else if (obj == btn_n) {
 			dispose();

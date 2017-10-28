@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.sooba.entity.SoobaConfig;
+
 public class ConfManager {
 	private final static String CONF_FILE_NAME = "sooba.conf";
 
@@ -12,31 +14,26 @@ public class ConfManager {
 
 	private final static String PROP_NAME_GRAPH_SPAN = "GraphSpan";
 
-	private final static String PROP_NAME_INPORT_NEW = "InportNew";
+	private final static String PROP_NAME_INPORT_NEW = "ImportNew";
 
 	public static void openConf() {
 		Properties prop = new Properties();
 
-		try(InputStream is = new FileInputStream(CONF_FILE_NAME)) {
+		try (InputStream is = new FileInputStream(CONF_FILE_NAME)) {
 			prop.load(is);
 
-			if (prop.getProperty(PROP_NAME_MAX_ROW) != null)
-				SoobaConst.MAX_ROW = Integer.parseInt(prop
-						.getProperty(PROP_NAME_MAX_ROW));
+			int maxRow = Integer.parseInt(prop.getProperty(PROP_NAME_MAX_ROW));
+			int graphSpan = Integer.parseInt(prop.getProperty(PROP_NAME_GRAPH_SPAN));
+			int addImport = Integer.parseInt(prop.getProperty(PROP_NAME_INPORT_NEW));
 
-			System.out.println(PROP_NAME_MAX_ROW + "=" + SoobaConst.MAX_ROW);
+			if (prop.getProperty(PROP_NAME_MAX_ROW) != null)
+				SoobaConfig.setMaxRow(maxRow);
 
 			if (prop.getProperty(PROP_NAME_GRAPH_SPAN) != null)
-				SoobaConst.GRAPH_SPAN = Integer.parseInt(prop
-						.getProperty(PROP_NAME_GRAPH_SPAN));
-
-			System.out.println(PROP_NAME_GRAPH_SPAN + "="
-					+ SoobaConst.GRAPH_SPAN);
+				SoobaConfig.setGraphSpan(graphSpan);
 
 			if (prop.getProperty(PROP_NAME_INPORT_NEW) != null)
-				SoobaConst.INPORT_NEW = Integer.parseInt(prop
-						.getProperty(PROP_NAME_INPORT_NEW));
-
+				SoobaConfig.setAddImport(addImport);
 
 		} catch (FileNotFoundException e) {
 
@@ -52,9 +49,9 @@ public class ConfManager {
 	public static void saveConf() {
 
 		Properties prop = new Properties();
-		prop.setProperty(PROP_NAME_MAX_ROW, ""+SoobaConst.MAX_ROW);
-		prop.setProperty(PROP_NAME_GRAPH_SPAN, ""+SoobaConst.GRAPH_SPAN);
-		prop.setProperty(PROP_NAME_INPORT_NEW, ""+SoobaConst.INPORT_NEW);
+		prop.setProperty(PROP_NAME_MAX_ROW, "" + SoobaConfig.getMaxRow());
+		prop.setProperty(PROP_NAME_GRAPH_SPAN, "" + SoobaConfig.getGraphSpan());
+		prop.setProperty(PROP_NAME_INPORT_NEW, "" + SoobaConfig.getAddImport());
 
 		try {
 			prop.store(new FileOutputStream(CONF_FILE_NAME), "SooBa Config File");
