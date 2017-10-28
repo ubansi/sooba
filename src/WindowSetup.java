@@ -31,6 +31,7 @@ import javax.swing.table.TableCellEditor;
 import com.sooba.constant.SoobaConst;
 import com.sooba.constant.ViewConst;
 import com.sooba.entity.SoobaConfig;
+import com.sooba.view.StatusInfo;
 
 public class WindowSetup extends Frame implements ActionListener, Runnable,
 		ItemListener, MouseListener, ClipboardOwner, ChangeListener {
@@ -226,7 +227,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		p4.add(graphScale);
 
 		p5.setLayout(new GridLayout(1, 1));
-		p5.add(sf.get_status_label());
+		p5.add(sf.getStatusLabel());
 
 		addLayout(p1, 1, 0, 3, 1);
 		addLayout(p2, 1, 1, 3, 1);
@@ -236,14 +237,14 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		addLayout(gm, 1, 5, 3, 2);
 		addLayout(p5, 0, 8, 1, 1);
 
-		StatusInfo.set_status_label("レイアウト完了");
+		StatusInfo.setStatusLabel("レイアウト完了");
 
 		th.start();
 		pack();
 		// setVisible(true);
 
 		dm.OpenTable(Table[0].getRowCount());
-		StatusInfo.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
+		StatusInfo.setStatusLabel("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 
 		OpeningDialog.closeOpening();
 
@@ -277,16 +278,16 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 
 		if (obj == fi1) {
-			StatusInfo.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
+			StatusInfo.setStatusLabel("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 			dm.OpenTable(Table[0].getRowCount());
 			GraphManager
 					.setGraphParam(Table[0].getSelectedRow());
 		} else if (obj == fi2) {
 			DataManager.SaveTable();
-			StatusInfo.set_status_label("データを保存しました   (" + Clock.getTime(1)
+			StatusInfo.setStatusLabel("データを保存しました   (" + Clock.getTime(1)
 					+ ")");
 		} else if (obj == b1) {
-			StatusInfo.set_status_label("在庫がリセットされました");
+			StatusInfo.setStatusLabel("在庫がリセットされました");
 			dm.stockClear();
 		}
 		// インポート
@@ -416,7 +417,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 	static public void copyClipboad(int row) {
 		String s;
 		if (null != (s = DataManager.getName(row))) {
-			StatusInfo.set_status_label(s + "をクリップボードにコピーしました");
+			StatusInfo.setStatusLabel(s + "をクリップボードにコピーしました");
 
 			clipboad = f.getToolkit().getSystemClipboard();
 			StringSelection contents = new StringSelection(s);
