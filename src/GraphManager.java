@@ -31,21 +31,29 @@ public class GraphManager extends Canvas {
 	private static Canvas c;
 	private static int timeOffset = 0;
 
-	GraphManager(){
+	private static final Color BACK_GROUND = Color.BLACK;
+	private static final Color PRICE_LIMIT = Color.RED;
+	private static final Color TIME_SCALE = Color.GREEN.darker().darker();
+	private static final Color DATE = Color.decode("#00ff7f");
+	private static final Color AVERAGE = Color.decode("#00bfff");
+	private static final Color PRICE = Color.GREEN;
+
+	public GraphManager(){
 		c = this;
 	}
 
+	@Override
 	public void paint(Graphics g) {
 //		c = this;
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		setBackground(Color.black);
+		setBackground(BACK_GROUND);
 
 		// 最高値と最安値の表示
 		if (highValue * lowValue != 0 && (highValue != lowValue)) {
-			g2.setColor(Color.RED);
+			g2.setColor(PRICE_LIMIT);
 			g2.drawLine(0, (int) (getHeight() * 0.15), getWidth(),
 					(int) (getHeight() * 0.15));
 			g2.drawLine(0, (int) (getHeight() * 0.85), getWidth(),
@@ -54,17 +62,17 @@ public class GraphManager extends Canvas {
 			g2.drawString("最高値=" + highValue, 0, 13);
 			g2.drawString("最安値=" + lowValue, 0, (int) (getHeight() * 0.90 + 13));
 
-			g2.setColor(Color.decode("#00bfff"));
+			g2.setColor(AVERAGE);
 			g2.drawLine(0, get_Y(averageValue), getWidth(), get_Y(averageValue));
 			g2.drawString("平均=" + averageValue, 0, get_Y(averageValue) - 13);
 
 		}
 
-		g2.setColor(Color.GREEN);
+		g2.setColor(PRICE);
 
 		if (data_value.size() > 1) {
 			// 時刻ラインの表示
-			g2.setColor(Color.GREEN.darker().darker());
+			g2.setColor(TIME_SCALE);
 			Calendar nowtimeline = Calendar.getInstance();
 			Calendar timeline0 = Calendar.getInstance();
 
@@ -79,17 +87,17 @@ public class GraphManager extends Canvas {
 				if (i % 2 == 0) {
 					if (timeScaleHour < 24 * 7){
 						g2.drawString("0:00",get_X(timeline0.getTimeInMillis()) - 10,(int)(getHeight()*0.15)-3);
-						g2.setColor(Color.decode("#00ff7f"));
-						g2.drawString((timeline0.get(Calendar.MONTH) + 1) + "/"+ timeline0.get(Calendar.DAY_OF_MONTH),
+						g2.setColor(DATE);
+						g2.drawString(getDateString(timeline0),
 								get_X(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
-						g2.setColor(Color.GREEN.darker().darker());
+						g2.setColor(TIME_SCALE);
 
 					}
 					else if(timeScaleHour < 24 * 7 * 4){
-						g2.setColor(Color.decode("#00ff7f"));
-						g2.drawString((timeline0.get(Calendar.MONTH) + 1) + "/"+ timeline0.get(Calendar.DAY_OF_MONTH),
+						g2.setColor(DATE);
+						g2.drawString(getDateString(timeline0),
 								get_X(timeline0.getTimeInMillis()) - 10, (int)(getHeight()*0.15)-3);
-						g2.setColor(Color.GREEN.darker().darker());
+						g2.setColor(TIME_SCALE);
 					}
 
 					if(timeScaleHour < 24*7*4){
@@ -121,28 +129,26 @@ public class GraphManager extends Canvas {
 				System.out.println(timeline_m0.get(Calendar.MONTH));
 
 
-				g2.setColor(Color.decode("#00ff7f"));
-				g2.drawString((timeline_m0.get(Calendar.MONTH) + 1) + "/"+ timeline_m0.get(Calendar.DAY_OF_MONTH),
+				g2.setColor(DATE);
+				g2.drawString(getDateString(timeline_m0),
 						get_X(timeline_m0.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
 
-				g2.setColor(Color.GREEN.darker().darker());
+				g2.setColor(TIME_SCALE);
 				g2.drawLine(get_X(timeline_m0.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,
 						get_X(timeline_m0.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
 
-				g2.setColor(Color.decode("#00ff7f"));
-				g2.drawString((timeline_m1.get(Calendar.MONTH) + 1) + "/"+ timeline_m1.get(Calendar.DAY_OF_MONTH),
+				g2.setColor(DATE);
+				g2.drawString(getDateString(timeline_m1),
 						get_X(timeline_m1.getTimeInMillis()) - 10, (int)(getHeight()*0.10)-3);
 
-				g2.setColor(Color.GREEN.darker().darker());
+				g2.setColor(TIME_SCALE);
 				g2.drawLine(get_X(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.15) - 1,	get_X(timeline_m1.getTimeInMillis()),	(int) (getHeight() * 0.85) + 1);
 
 			}
 
-
-
 			i = 0;
 
-			g2.setColor(Color.GREEN);
+			g2.setColor(PRICE);
 			// 価格が変動しているもの
 			if (lowValue != highValue) {
 				i = 0;
@@ -283,7 +289,18 @@ public class GraphManager extends Canvas {
 		}else
 			timeOffset =0;
 
+	}
 
+	/**
+	 * カレンダーの文字列表現 1/1 の形式で出力する
+	 * @param calendar
+	 * @return
+	 */
+	private static String getDateString(Calendar calendar){
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+		return month + "/"+ day;
 	}
 
 }
