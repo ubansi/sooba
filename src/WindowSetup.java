@@ -28,14 +28,17 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellEditor;
 
+import com.sooba.constant.SoobaConst;
+import com.sooba.constant.ViewConst;
 import com.sooba.entity.SoobaConfig;
+import com.sooba.view.StatusInfo;
 
 public class WindowSetup extends Frame implements ActionListener, Runnable,
 		ItemListener, MouseListener, ClipboardOwner, ChangeListener {
 
-	MenuItem fi1, fi2;
-	MenuItem ed1, ed2;
-	MenuItem conf1;
+	private MenuItem fi1, fi2;
+	private MenuItem ed1, ed2;
+	private MenuItem conf1;
 	StatusInfo ws_info;
 	static MyTable[] Table = new MyTable[SoobaConst.MAXTAB];//MAXTAB=10
 
@@ -49,7 +52,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 	static Label sum_value;
 	static Clipboard clipboad;
 	TableCellEditor tce;
-	GraphManager gm;
+	private GraphManager gm;
 	static Frame f;
 	/**
 	 * 0:all 1:watch 2:order
@@ -158,32 +161,17 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		back.addActionListener(this);
 		forward.addActionListener(this);
 
-		Choice c2 = new Choice();
-		c2.add("３時間");
-		c2.add("１２時間");
-		c2.add("２４時間");
-		c2.add("４８時間");
-		c2.add("１週間");
-		c2.add("４週間");
+		Choice graphScale = createGraphScaleChoicer();
 
-		c2.addItemListener(this);
-		int graphSpan = SoobaConfig.getGraphSpan();
-		c2.select(graphSpan);
+		graphScale.addItemListener(this);
 
-		if (graphSpan== 0)
-			gm.setScale(3);
-		else if (graphSpan == 1)
-			gm.setScale(12);
-		else if (graphSpan == 2)
-			gm.setScale(24);
-		else if (graphSpan == 3)
-			gm.setScale(48);
-		else if (graphSpan == 4)
-			gm.setScale(24 * 7);
-		else if (graphSpan == 5)
-			gm.setScale(24 * 7 * 4);
-		else
-			gm.setScale(24);
+		int graphSpanConfig = SoobaConfig.getGraphSpan();
+		graphScale.select(graphSpanConfig);
+
+		String selectedSpan = graphScale.getSelectedItem();
+
+		int scaleHour = ViewConst.GRAPH_SCALE.get(selectedSpan);
+		gm.setScaleByHour(scaleHour);
 
 		Label lname = new Label("現在時刻");
 		lname.setAlignment(Label.RIGHT);
@@ -236,10 +224,10 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		p4.add(back);
 		p4.add(forward);
 		p4.add(span);
-		p4.add(c2);
+		p4.add(graphScale);
 
 		p5.setLayout(new GridLayout(1, 1));
-		p5.add(sf.get_status_label());
+		p5.add(sf.getStatusLabel());
 
 		addLayout(p1, 1, 0, 3, 1);
 		addLayout(p2, 1, 1, 3, 1);
@@ -249,14 +237,14 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		addLayout(gm, 1, 5, 3, 2);
 		addLayout(p5, 0, 8, 1, 1);
 
-		StatusInfo.set_status_label("レイアウト完了");
+		StatusInfo.setStatusLabel("レイアウト完了");
 
 		th.start();
 		pack();
 		// setVisible(true);
 
 		dm.OpenTable(Table[0].getRowCount());
-		StatusInfo.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
+		StatusInfo.setStatusLabel("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 
 		OpeningDialog.closeOpening();
 
@@ -269,22 +257,37 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 	}
 
+	/**
+	 * グラフのスケール選択部分の作成
+	 * @return
+	 */
+	private Choice createGraphScaleChoicer() {
+
+		Choice graphScale = new Choice();
+
+		for(String scaleName:ViewConst.GRAPH_SCALE.keySet()) {
+			graphScale.add(scaleName);
+		}
+
+		return graphScale;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 
 
 		if (obj == fi1) {
-			StatusInfo.set_status_label("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
+			StatusInfo.setStatusLabel("ファイルを開きました   (" + Clock.getTime(Clock.HHMMSS) + ")");
 			dm.OpenTable(Table[0].getRowCount());
 			GraphManager
 					.setGraphParam(Table[0].getSelectedRow());
 		} else if (obj == fi2) {
 			DataManager.SaveTable();
-			StatusInfo.set_status_label("データを保存しました   (" + Clock.getTime(1)
+			StatusInfo.setStatusLabel("データを保存しました   (" + Clock.getTime(1)
 					+ ")");
 		} else if (obj == b1) {
-			StatusInfo.set_status_label("在庫がリセットされました");
+			StatusInfo.setStatusLabel("在庫がリセットされました");
 			dm.stockClear();
 		}
 		// インポート
@@ -394,17 +397,17 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 		Choice cho = (Choice) e.getItemSelectable();
 		if (cho.getSelectedIndex() == 0)
-			gm.setScale(3);
+			gm.setScaleByHour(3);
 		if (cho.getSelectedIndex() == 1)
-			gm.setScale(12);
+			gm.setScaleByHour(12);
 		if (cho.getSelectedIndex() == 2)
-			gm.setScale(24);
+			gm.setScaleByHour(24);
 		if (cho.getSelectedIndex() == 3)
-			gm.setScale(48);
+			gm.setScaleByHour(48);
 		if (cho.getSelectedIndex() == 4)
-			gm.setScale(24 * 7);
+			gm.setScaleByHour(24 * 7);
 		if (cho.getSelectedIndex() == 5)
-			gm.setScale(24*7*4);
+			gm.setScaleByHour(24*7*4);
 
 		SoobaConfig.setGraphSpan(cho.getSelectedIndex());
 
@@ -414,7 +417,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 	static public void copyClipboad(int row) {
 		String s;
 		if (null != (s = DataManager.getName(row))) {
-			StatusInfo.set_status_label(s + "をクリップボードにコピーしました");
+			StatusInfo.setStatusLabel(s + "をクリップボードにコピーしました");
 
 			clipboad = f.getToolkit().getSystemClipboard();
 			StringSelection contents = new StringSelection(s);

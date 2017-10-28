@@ -10,7 +10,9 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import com.sooba.constant.SoobaConst;
 import com.sooba.entity.SoobaConfig;
+import com.sooba.view.StatusInfo;
 
 public class InportDialog extends JDialog implements ActionListener {
 
@@ -196,7 +198,7 @@ public class InportDialog extends JDialog implements ActionListener {
 				k++;
 			}
 
-			StatusInfo.set_status_label("インポートが完了しました");
+			StatusInfo.setStatusLabel("インポートが完了しました");
 
 			dispose();
 		} else if (obj == btn_n) {

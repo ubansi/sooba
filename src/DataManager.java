@@ -11,7 +11,9 @@ import java.util.Calendar;
 
 import javax.swing.table.AbstractTableModel;
 
+import com.sooba.constant.SoobaConst;
 import com.sooba.entity.SoobaConfig;
+import com.sooba.view.StatusInfo;
 
 public class DataManager extends AbstractTableModel {
 
@@ -689,13 +691,13 @@ public class DataManager extends AbstractTableModel {
 			System.out.println(itemDataList.size());
 
 		} catch (IOException e) {
-			StatusInfo.set_status_label("新しいファイルを作成します。");
+			StatusInfo.setStatusLabel("新しいファイルを作成します。");
 			File fl = new File(FILENAME);
 			SoobaConst.openData = 1;
 			try {
 				fl.createNewFile();
 			} catch (IOException e1) {
-				StatusInfo.set_status_label("ファイルの作成に失敗しました。");
+				StatusInfo.setStatusLabel("ファイルの作成に失敗しました。");
 				SoobaConst.openData = 1;
 			}
 		}

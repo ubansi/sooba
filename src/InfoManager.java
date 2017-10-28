@@ -1,6 +1,8 @@
 import java.awt.TextArea;
 import java.util.Calendar;
 
+import com.sooba.constant.SoobaConst;
+
 
 public class InfoManager {
 	

@@ -1,6 +1,8 @@
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import com.sooba.constant.SoobaConst;
+
 public class Exit implements WindowListener {
 	WindowSetup frame;
 
