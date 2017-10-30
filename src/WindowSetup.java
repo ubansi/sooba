@@ -26,7 +26,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.table.TableCellEditor;
 
 import com.sooba.constant.SoobaConst;
 import com.sooba.constant.ViewConst;
@@ -39,37 +38,35 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 	private MenuItem fi1, fi2;
 	private MenuItem ed1, ed2;
 	private MenuItem conf1;
-	StatusInfo ws_info;
-	static MyTable[] Table = new MyTable[SoobaConst.MAXTAB];//MAXTAB=10
+	public static MyTable[] Table = new MyTable[SoobaConst.MAXTAB];//MAXTAB=10
 
-	DataManager dm = new DataManager();
+	private DataManager dm = new DataManager();
 	static JTabbedPane pane;
 
-	Button b1, b2;
-	Button back,forward;
+	private Button b1, b2;
+	private Button back,forward;
 
-	Label time;
-	static Label sum_value;
-	static Clipboard clipboad;
-	TableCellEditor tce;
+	private Label time;
+	public static Label sum_value;
+	private static Clipboard clipboad;
 	private GraphManager gm;
-	static Frame f;
+	private static Frame f;
 	/**
 	 * 0:all 1:watch 2:order
 	 */
-	static int paneIndex = -1;
+	public static int paneIndex = -1;
 
-	boolean clock_switch = true;
+	private boolean clock_switch = true;
 
-	Thread th = new Thread(this);
+	private Thread th = new Thread(this);
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
-	GridBagLayout gbl = new GridBagLayout();
+	private GridBagLayout gbl = new GridBagLayout();
 
-	void addLayout(Component comp, int x, int y, int w, int h) {
+	private void addLayout(Component comp, int x, int y, int w, int h) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = x;
@@ -82,7 +79,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 	}
 
 	// ウインドウの作成
-	WindowSetup() {
+	public WindowSetup() {
 
 		f = this;
 		// openingDialog od =
