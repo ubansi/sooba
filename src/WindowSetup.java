@@ -421,7 +421,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		gm.setTimeOffset(0,Table[0].getSelectedRow());
 	}
 
-	static public void copyClipboad(int row) {
+	public static void copyClipboad(int row) {
 		String s;
 		if (null != (s = DataManager.getName(row))) {
 			StatusInfo.setStatusLabel(s + "をクリップボードにコピーしました");
