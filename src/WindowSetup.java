@@ -222,8 +222,11 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 	}
 
+	/**
+	 * メニューバーの作成処理
+	 * @return
+	 */
 	private MenuBar createMenuBar() {
-		// メニューバーの作成
 		MenuBar mb = new MenuBar();
 		Menu file1 = new Menu("ファイル");
 		Menu edit1 = new Menu("編集");
