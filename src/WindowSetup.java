@@ -41,7 +41,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 	public static MyTable[] Table = new MyTable[SoobaConst.MAXTAB];//MAXTAB=10
 
 	private DataManager dm = new DataManager();
-	static JTabbedPane pane;
+	public static JTabbedPane pane;
 
 	private Button b1, b2;
 	private Button back,forward;
@@ -58,7 +58,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 	private boolean clock_switch = true;
 
-	private Thread th = new Thread(this);
+
 	/**
 	 *
 	 */
@@ -89,41 +89,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 		setTitle("SooBa Ver" + SoobaConst.VER);
 
-		// メニューバーの設置
-		MenuBar mb = new MenuBar();
-		Menu file1 = new Menu("ファイル");
-		Menu edit1 = new Menu("編集");
-		Menu conf = new Menu("設定");
-
-
-		fi1 = new MenuItem("開く");
-		fi2 = new MenuItem("保存");
-
-		ed1 = new MenuItem("インポート");
-		ed2 = new MenuItem("エクスポート");
-
-		conf1 = new MenuItem("設定");
-
-		fi1.addActionListener(this);
-		fi2.addActionListener(this);
-
-		ed1.addActionListener(this);
-		ed2.addActionListener(this);
-
-		conf1.addActionListener(this);
-
-		file1.add(fi1);
-		file1.add(fi2);
-
-		edit1.add(ed1);
-		edit1.add(ed2);
-
-		conf.add(conf1);
-
-		// メニューへ追加
-		mb.add(file1);
-		mb.add(edit1);
-		mb.add(conf);
+		MenuBar mb = createMenuBar();
 
 		// メニューバーをフレームに追加
 		setMenuBar(mb);
@@ -236,7 +202,9 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 		StatusInfo.setStatusLabel("レイアウト完了");
 
+		Thread th = new Thread(this);
 		th.start();
+
 		pack();
 		// setVisible(true);
 
@@ -252,6 +220,48 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 
 		DataManager.setInfoData(0);
 
+	}
+
+	/**
+	 * メニューバーの作成処理
+	 * @return
+	 */
+	private MenuBar createMenuBar() {
+		MenuBar mb = new MenuBar();
+		Menu file1 = new Menu("ファイル");
+		Menu edit1 = new Menu("編集");
+		Menu conf = new Menu("設定");
+
+
+		fi1 = new MenuItem("開く");
+		fi2 = new MenuItem("保存");
+
+		ed1 = new MenuItem("インポート");
+		ed2 = new MenuItem("エクスポート");
+
+		conf1 = new MenuItem("設定");
+
+		fi1.addActionListener(this);
+		fi2.addActionListener(this);
+
+		ed1.addActionListener(this);
+		ed2.addActionListener(this);
+
+		conf1.addActionListener(this);
+
+		file1.add(fi1);
+		file1.add(fi2);
+
+		edit1.add(ed1);
+		edit1.add(ed2);
+
+		conf.add(conf1);
+
+		// メニューへ追加
+		mb.add(file1);
+		mb.add(edit1);
+		mb.add(conf);
+		return mb;
 	}
 
 	/**
@@ -411,7 +421,7 @@ public class WindowSetup extends Frame implements ActionListener, Runnable,
 		gm.setTimeOffset(0,Table[0].getSelectedRow());
 	}
 
-	static public void copyClipboad(int row) {
+	public static void copyClipboad(int row) {
 		String s;
 		if (null != (s = DataManager.getName(row))) {
 			StatusInfo.setStatusLabel(s + "をクリップボードにコピーしました");
